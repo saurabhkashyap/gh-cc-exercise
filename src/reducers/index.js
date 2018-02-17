@@ -1,5 +1,10 @@
 import {combineReducers} from 'redux'
-import app from './appReducer'
+import profileDataReducer from './profileDataReducer'
+import profileDataLoadingStatusReducer from './profileDataLoadingStatusReducer'
+import profileDataLoadingErrorStatusReducer from './profileDataLoadingErrorStatusReducer'
+
 export default combineReducers({
-  app
+  profileData: profileDataReducer,
+  profileDataLoadingStatus: profileDataLoadingStatusReducer,
+  profileDataLoadingErrorStatus: profileDataLoadingErrorStatusReducer
 })

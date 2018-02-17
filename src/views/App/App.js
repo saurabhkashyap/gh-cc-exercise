@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from 'components/Header'
+import {ProfileContainer} from 'components/Profile'
 import Footer from 'components/Footer'
 import './app.scss'
 
@@ -22,6 +23,7 @@ class App extends Component {
           <li>Lodash, moment, classnames</li>
           <li>And much more!</li>
         </ul>
+        <ProfileContainer />
         <Footer />
       </div>
     )
