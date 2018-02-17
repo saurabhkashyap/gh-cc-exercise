@@ -16,7 +16,7 @@ class App extends Component {
               Babel Sass Modular styling</a>
           </li>
           <li>True JS Hot Module Replacement</li>
-          <li>Absolute path for imports (<code>/src/*</code>)</li>
+          <li>Absolute path for imports (<code>{'/src/*'}</code>)</li>
           <li>Less and Sass support</li>
           <li>StandardJS Linting</li>
           <li>Lodash, moment, classnames</li>
