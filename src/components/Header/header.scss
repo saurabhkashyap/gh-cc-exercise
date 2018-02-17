@@ -1,18 +1,13 @@
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-  padding: 5px;
+.Menu {
+  // Override some Semantic UI styles.
+  border-radius: 0 !important;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
+
+  .Logo {
+    height: 1rem;
+    margin-right: 10px;
+  }
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-/* Commented out for professionalism :(
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}*/

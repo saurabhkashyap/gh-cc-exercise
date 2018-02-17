@@ -15,7 +15,9 @@
     "redux": "3.7.2",
     "redux-multi": "0.1.91",
     "redux-promise": "0.5.3",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "semantic-ui-css": "2.2.14",
+    "semantic-ui-react": "0.78.2"
   },
   "scripts": {
     "start": "webpack-dashboard -c cyan -- react-scripts start",
