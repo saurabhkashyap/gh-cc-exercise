@@ -1,13 +1,16 @@
 import React from 'react'
+import {Image, Menu} from 'semantic-ui-react'
 import logo from './assets/logo.png'
 import './header.scss'
 
 const Header = props => {
   return (
-    <div styleName='App-header'>
-      <img src={logo} styleName='App-logo' alt='logo' />
-      <h2>Welcome to Clear Capital React!</h2>
-    </div>
+    <Menu size='massive' widths={1} styleName='Menu'>
+      <Menu.Item header>
+        <Image src={logo} styleName='Logo' />
+        Exercise
+      </Menu.Item>
+    </Menu>
   )
 }
 
