@@ -8,6 +8,8 @@ import profileDataReducer from './profileDataReducer'
 import profileDataLoadingStatusReducer from './profileDataLoadingStatusReducer'
 import profileDataLoadingErrorStatusReducer from './profileDataLoadingErrorStatusReducer'
 
+import usernameReducer from './usernameReducer'
+
 export default combineReducers({
   activityData: activityDataReducer,
   activityDataLoadingStatus: activityDataLoadingStatusReducer,
@@ -15,5 +17,7 @@ export default combineReducers({
 
   profileData: profileDataReducer,
   profileDataLoadingStatus: profileDataLoadingStatusReducer,
-  profileDataLoadingErrorStatus: profileDataLoadingErrorStatusReducer
+  profileDataLoadingErrorStatus: profileDataLoadingErrorStatusReducer,
+
+  username: usernameReducer
 })

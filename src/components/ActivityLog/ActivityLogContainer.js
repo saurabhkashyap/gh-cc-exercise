@@ -6,7 +6,7 @@ import ActivityLog from './ActivityLog'
 
 class ActivityLogContainer extends Component {
   componentDidMount () {
-    this.props.loadActivityData('gitname')
+    this.props.loadActivityData(this.props.username)
   }
 
   render () {
@@ -22,11 +22,12 @@ class ActivityLogContainer extends Component {
   }
 }
 
-const mapStateToProps = ({activityData, activityDataLoadingStatus, activityDataLoadingErrorStatus}) => {
+const mapStateToProps = ({activityData, activityDataLoadingStatus, activityDataLoadingErrorStatus, username}) => {
   return {
     activityData,
     activityDataLoadingStatus,
-    activityDataLoadingErrorStatus
+    activityDataLoadingErrorStatus,
+    username
   }
 }
 
@@ -38,7 +39,8 @@ ActivityLogContainer.propTypes = {
   loadActivityData: PropTypes.func.isRequired,
   activityData: PropTypes.array.isRequired,
   activityDataLoadingStatus: PropTypes.bool.isRequired,
-  activityDataLoadingErrorStatus: PropTypes.bool.isRequired
+  activityDataLoadingErrorStatus: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired
 }
 
 export default connect(

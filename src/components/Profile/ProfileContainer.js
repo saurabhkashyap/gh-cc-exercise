@@ -6,7 +6,7 @@ import Profile from './Profile'
 
 class ProfileContainer extends Component {
   componentDidMount () {
-    this.props.loadProfileData('gitname')
+    this.props.loadProfileData(this.props.username)
   }
 
   render () {
@@ -22,11 +22,12 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus}) => {
+const mapStateToProps = ({profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus, username}) => {
   return {
     profileData,
     profileDataLoadingStatus,
-    profileDataLoadingErrorStatus
+    profileDataLoadingErrorStatus,
+    username
   }
 }
 
@@ -38,7 +39,8 @@ ProfileContainer.propTypes = {
   loadProfileData: PropTypes.func.isRequired,
   profileData: PropTypes.object.isRequired,
   profileDataLoadingStatus: PropTypes.bool.isRequired,
-  profileDataLoadingErrorStatus: PropTypes.bool.isRequired
+  profileDataLoadingErrorStatus: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired
 }
 
 export default connect(
