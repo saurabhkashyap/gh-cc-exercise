@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Card, Dimmer, Icon, Image, Loader, Message, Segment} from 'semantic-ui-react'
+
 import './profile.scss'
 
 class Profile extends Component {
@@ -8,7 +9,7 @@ class Profile extends Component {
     const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
 
     return (
-      <div styleName='Profile'>
+      <div>
 
         <Dimmer.Dimmable>
           <Dimmer inverted active={profileDataLoadingStatus || profileDataLoadingErrorStatus}>
@@ -33,7 +34,9 @@ class Profile extends Component {
             <Image src={profileData.avatar_url} />
             <Card.Content>
               <Card.Header>
-                {profileData.name}
+                <a href={profileData.html_url} title='View profile on GitHub' styleName='Name'>
+                  {profileData.name}
+                </a>
               </Card.Header>
               <Card.Meta>
                 {profileData.login}
