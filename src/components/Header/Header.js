@@ -5,7 +5,7 @@ import './header.scss'
 
 const Header = props => {
   return (
-    <Menu size='massive' widths={1} styleName='Menu'>
+    <Menu size='massive' widths={1} inverted styleName='Menu'>
       <Menu.Item header>
         <Image src={logo} styleName='Logo' />
         Exercise
