@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Card, Container, Dimmer, Icon, Image, Loader, Message, Segment} from 'semantic-ui-react'
+import {Card, Dimmer, Icon, Image, Loader, Message, Segment} from 'semantic-ui-react'
 import './profile.scss'
 
 class Profile extends Component {
@@ -8,7 +8,7 @@ class Profile extends Component {
     const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
 
     return (
-      <Container styleName='Profile'>
+      <div styleName='Profile'>
 
         <Dimmer.Dimmable>
           <Dimmer inverted active={profileDataLoadingStatus || profileDataLoadingErrorStatus}>
@@ -61,7 +61,7 @@ class Profile extends Component {
           </Card>
         }
 
-      </Container>
+      </div>
     )
   }
 }
