@@ -49,8 +49,9 @@ const setActivityDataLoadingErrorStatus = (status) => {
   }
 }
 
-export const loadProfileData = (username) => {
-  return (dispatch) => {
+export const loadProfileData = () => {
+  return (dispatch, getState) => {
+    const {username} = getState()
     dispatch(setProfileDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/users/${username}`, {
       dataProcessor: storeProfileData,
@@ -60,8 +61,9 @@ export const loadProfileData = (username) => {
   }
 }
 
-export const loadActivityData = (username) => {
-  return (dispatch) => {
+export const loadActivityData = () => {
+  return (dispatch, getState) => {
+    const {username} = getState()
     dispatch(setActivityDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/users/${username}/events/public`, {
       dataProcessor: storeActivityData,
