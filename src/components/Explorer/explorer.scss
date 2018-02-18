@@ -1,1 +1,10 @@
-.Explorer {}
+.Explorer {
+  margin-top: 1rem;
+
+  .Pane {
+    min-height: 38.1rem;
+    border-top: 1px solid #d4d4d5 !important;
+    border-top-left-radius: .28571429rem !important;
+    border-top-right-radius: .28571429rem !important;
+  }
+}
