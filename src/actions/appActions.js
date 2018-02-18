@@ -77,7 +77,7 @@ const fetchJsonResource = (url, {dataProcessor, loadingStatusController, errorSt
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Failed to fetch. HTTP status: [${response.status}] ${response.statusText}`)
+          throw new Error(`Failed to fetch resource. HTTP status: [${response.status}] ${response.statusText}`)
         }
         return response.json()
       })
@@ -86,7 +86,7 @@ const fetchJsonResource = (url, {dataProcessor, loadingStatusController, errorSt
         dispatch(loadingStatusController(false))
       })
       .catch((err) => {
-        console.log('Failed to either fetch or parse response. Error:', err.message)
+        console.log('Failed to either fetch or parse resource. Error:', err.message)
         dispatch(errorStatusController(true))
         dispatch(loadingStatusController(false))
       })
