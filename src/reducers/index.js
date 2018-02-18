@@ -8,6 +8,10 @@ import profileDataReducer from './profileDataReducer'
 import profileDataLoadingStatusReducer from './profileDataLoadingStatusReducer'
 import profileDataLoadingErrorStatusReducer from './profileDataLoadingErrorStatusReducer'
 
+import repositoryDataReducer from './repositoryDataReducer'
+import repositoryDataLoadingStatusReducer from './repositoryDataLoadingStatusReducer'
+import repositoryDataLoadingErrorStatusReducer from './repositoryDataLoadingErrorStatusReducer'
+
 import usernameReducer from './usernameReducer'
 
 export default combineReducers({
@@ -18,6 +22,10 @@ export default combineReducers({
   profileData: profileDataReducer,
   profileDataLoadingStatus: profileDataLoadingStatusReducer,
   profileDataLoadingErrorStatus: profileDataLoadingErrorStatusReducer,
+
+  repositoryData: repositoryDataReducer,
+  repositoryDataLoadingStatus: repositoryDataLoadingStatusReducer,
+  repositoryDataLoadingErrorStatus: repositoryDataLoadingErrorStatusReducer,
 
   username: usernameReducer
 })

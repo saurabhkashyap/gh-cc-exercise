@@ -4,7 +4,10 @@ import {
   SET_PROFILE_DATA_LOADING_ERROR_STATUS,
   SET_ACTIVITY_DATA,
   SET_ACTIVITY_DATA_LOADING_STATUS,
-  SET_ACTIVITY_DATA_LOADING_ERROR_STATUS
+  SET_ACTIVITY_DATA_LOADING_ERROR_STATUS,
+  SET_REPOSITORY_DATA,
+  SET_REPOSITORY_DATA_LOADING_STATUS,
+  SET_REPOSITORY_DATA_LOADING_ERROR_STATUS
 } from 'constants/actionTypes'
 
 const storeProfileData = (profileData) => {
@@ -49,6 +52,27 @@ const setActivityDataLoadingErrorStatus = (status) => {
   }
 }
 
+const storeRepositoryData = (repositoryData) => {
+  return {
+    type: SET_REPOSITORY_DATA,
+    payload: {repositoryData}
+  }
+}
+
+const setRepositoryDataLoadingStatus = (status) => {
+  return {
+    type: SET_REPOSITORY_DATA_LOADING_STATUS,
+    payload: {status}
+  }
+}
+
+const setRepositoryDataLoadingErrorStatus = (status) => {
+  return {
+    type: SET_REPOSITORY_DATA_LOADING_ERROR_STATUS,
+    payload: {status}
+  }
+}
+
 export const loadProfileData = () => {
   return (dispatch, getState) => {
     const {username} = getState()
@@ -69,6 +93,18 @@ export const loadActivityData = () => {
       dataProcessor: storeActivityData,
       loadingStatusController: setActivityDataLoadingStatus,
       errorStatusController: setActivityDataLoadingErrorStatus
+    }))
+  }
+}
+
+export const loadRepositoryData = () => {
+  return (dispatch, getState) => {
+    const {username} = getState()
+    dispatch(setRepositoryDataLoadingStatus(true))
+    dispatch(fetchJsonResource(`https://api.github.com/users/${username}/repos?type=owner&sort=updated&direction=desc`, {
+      dataProcessor: storeRepositoryData,
+      loadingStatusController: setRepositoryDataLoadingStatus,
+      errorStatusController: setRepositoryDataLoadingErrorStatus
     }))
   }
 }
