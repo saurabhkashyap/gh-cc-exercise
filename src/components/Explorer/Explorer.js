@@ -18,7 +18,7 @@ const panes = [
         <Header>
           Pull Requests
           <Header.Subheader>
-            Recently-updated merged pull requests authored by this user
+            Recently-updated, <em>merged</em> pull requests authored by this user
           </Header.Subheader>
         </Header>
         <MergeListContainer />
@@ -36,7 +36,7 @@ const panes = [
         <Header>
           Repositories
           <Header.Subheader>
-            Recently-updated repositories owned by this user
+            Recently-updated source <em>(i.e. non-fork)</em> repositories owned by this user
           </Header.Subheader>
         </Header>
         <RepositoryListContainer />

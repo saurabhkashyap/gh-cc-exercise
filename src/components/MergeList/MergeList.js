@@ -30,35 +30,38 @@ class MergeList extends Component {
 
     console.log('mergeData', mergeData)
 
-    const maxMerges = 30
+    const maxMerges = 15
 
     const listItems = mergeData.hasOwnProperty('items') ? mergeData.items.slice(0, maxMerges).map((pullReq, index) => {
       const isOwner = pullReq.author_association === 'OWNER'
       const authorAssociation = MergeList.lowercaseWithCapitalFirstLetter(pullReq.author_association)
       const updatedAtMoment = moment(pullReq.updated_at)
       const {repoHomepage, repoOwner, repoName} = MergeList.parsePullReqHtmlUrl(pullReq.html_url)
+      const repoFullName = `${repoOwner}/${repoName}`
+      const pullReqFullName = `#${pullReq.number}: ${pullReq.title}`
+      const commentOrComments = (pullReq.comments === 1) ? 'comment' : 'comments'
 
       return (
         <List.Item key={index}>
           <Icon name='fork' />
           <List.Content>
-            <a href={pullReq.html_url} title='View pull request on GitHub'>
-              {pullReq.title}
+            <a href={pullReq.html_url} title={`View ${pullReqFullName} on GitHub`}>
+              {pullReqFullName}
             </a>
             {' in '}
-            <a href={repoHomepage} title={`Visit ${repoOwner}/${repoName} on GitHub`}>
-              {`${repoOwner}/${repoName}`}
+            <a href={repoHomepage} title={`Visit ${repoFullName} on GitHub`}>
+              {repoFullName}
             </a>
             <List.Description title={'Updated ' + updatedAtMoment.format('MMMM D, YYYY [at] h:mm A')}>
               Updated {updatedAtMoment.fromNow()}
             </List.Description>
             <Item.Extra>
               <Label.Group>
-                <Label basic styleName='Label'>
+                <Label basic styleName='Label' title={`${pullReq.comments} ${commentOrComments}`}>
                   <Icon name='discussions' />
                   {pullReq.comments}
                 </Label>
-                <Label basic styleName='Label'>
+                <Label basic styleName='Label' title={`${authorAssociation} role`}>
                   <Icon name={isOwner ? 'home' : 'globe'} />
                   {authorAssociation}
                 </Label>
@@ -70,33 +73,28 @@ class MergeList extends Component {
     }) : []
 
     return (
-      <div styleName='MergeList'>
+      <Dimmer.Dimmable styleName='MergeList'>
+        <Dimmer inverted active={mergeDataLoadingStatus} />
 
-        <Dimmer.Dimmable>
-          <Dimmer inverted active={mergeDataLoadingStatus || mergeDataLoadingErrorStatus}>
-            <Segment basic>
-              <Message icon error={mergeDataLoadingErrorStatus} hidden={!mergeDataLoadingErrorStatus}>
-                <Message.Content>
-                  <Message.Header>
-                    Error
-                  </Message.Header>
-                  <p>
-                    We failed to load the merge data from GitHub.
-                  </p>
-                </Message.Content>
-              </Message>
-            </Segment>
-          </Dimmer>
-        </Dimmer.Dimmable>
+        <Message icon error={mergeDataLoadingErrorStatus} hidden={!mergeDataLoadingErrorStatus}>
+          <Message.Content>
+            <Message.Header>
+              Error
+            </Message.Header>
+            <p>
+              We failed to load the merge data from GitHub.
+            </p>
+          </Message.Content>
+        </Message>
 
         {!mergeDataLoadingErrorStatus &&
-        <List>
-          <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
-          {listItems}
-        </List>
+          <List>
+            <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
+            {listItems}
+          </List>
         }
 
-      </div>
+      </Dimmer.Dimmable>
     )
   }
 }

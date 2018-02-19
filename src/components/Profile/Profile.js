@@ -9,62 +9,57 @@ class Profile extends Component {
     const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
 
     return (
-      <div>
+      <Dimmer.Dimmable>
+        <Dimmer inverted active={profileDataLoadingStatus} />
 
-        <Dimmer.Dimmable>
-          <Dimmer inverted active={profileDataLoadingStatus || profileDataLoadingErrorStatus}>
-            <Segment basic>
-              <Message icon error={profileDataLoadingErrorStatus} hidden={!profileDataLoadingErrorStatus}>
-                <Message.Content>
-                  <Message.Header>
-                    Error
-                  </Message.Header>
-                  <p>
-                    We failed to load the profile data from GitHub.
-                  </p>
-                </Message.Content>
-              </Message>
-            </Segment>
-          </Dimmer>
-        </Dimmer.Dimmable>
+        <Message icon error={profileDataLoadingErrorStatus} hidden={!profileDataLoadingErrorStatus}>
+          <Message.Content>
+            <Message.Header>
+              Error
+            </Message.Header>
+            <p>
+              We failed to load the profile data from GitHub.
+            </p>
+          </Message.Content>
+        </Message>
 
         {!profileDataLoadingErrorStatus &&
-          <Card>
-            <Loader indeterminate active={profileDataLoadingStatus}>Loading</Loader>
-            <Image src={profileData.avatar_url} />
-            <Card.Content>
-              <Card.Header>
-                <a href={profileData.html_url} title='View profile on GitHub' styleName='Name'>
-                  {profileData.name}
-                </a>
-              </Card.Header>
-              <Card.Meta>
-                {profileData.login}
-              </Card.Meta>
-              <Card.Description>
-                {profileData.bio}
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <Icon name='marker' />
-              {profileData.location}
-            </Card.Content>
-            <Card.Content extra>
-              <Icon name='user' />
-              {profileData.followers} Followers
-            </Card.Content>
-            <Card.Content extra>
-              <Icon name='fork' />
-              {profileData.public_repos} Public Repos
-            </Card.Content>
-            <Card.Content extra>
-              <Icon name='github' />
-              {profileData.public_gists} Public Gists
-            </Card.Content>
-          </Card>
+        <Card>
+          <Loader indeterminate active={profileDataLoadingStatus}>Loading</Loader>
+          <Image src={profileData.avatar_url} />
+          <Card.Content>
+            <Card.Header>
+              <a href={profileData.html_url} title='View profile on GitHub' styleName='Name'>
+                {profileData.name}
+              </a>
+            </Card.Header>
+            <Card.Meta>
+              {profileData.login}
+            </Card.Meta>
+            <Card.Description>
+              {profileData.bio}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <Icon name='marker' />
+            {profileData.location}
+          </Card.Content>
+          <Card.Content extra>
+            <Icon name='user' />
+            {profileData.followers} Followers
+          </Card.Content>
+          <Card.Content extra>
+            <Icon name='fork' />
+            {profileData.public_repos} Public Repos
+          </Card.Content>
+          <Card.Content extra>
+            <Icon name='github' />
+            {profileData.public_gists} Public Gists
+          </Card.Content>
+        </Card>
         }
 
-      </div>
+      </Dimmer.Dimmable>
     )
   }
 }

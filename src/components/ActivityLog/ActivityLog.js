@@ -43,15 +43,12 @@ class ActivityLog extends Component {
               {createdAtMoment.fromNow()}
             </Feed.Date>
             <Feed.Summary styleName='Summary'>
-              <a href={actor.url}>
-                {actor.display_login}
-              </a>
-              {` ${payload.action} `}
+              {`${actor.display_login} ${payload.action} `}
+              {isIssue ? 'an ' : 'a '}
               <a href={issueOrPullRequestUrl} title={`#${issueOrPullRequestNumber}: ${issueOrPullRequestTitle}`}>
-                {isIssue ? 'an issue' : 'a pull request'}
+                {isIssue ? 'issue ' : 'pull request '}
               </a>
-              {' in '}
-              <a href={repo.url}>{repo.name}</a>
+              {`in ${repo.name}`}
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
@@ -59,24 +56,19 @@ class ActivityLog extends Component {
     })
 
     return (
-      <div styleName='ActivityLog'>
+      <Dimmer.Dimmable styleName='ActivityLog'>
+        <Dimmer inverted active={activityDataLoadingStatus} />
 
-        <Dimmer.Dimmable>
-          <Dimmer inverted active={activityDataLoadingStatus || activityDataLoadingErrorStatus}>
-            <Segment basic>
-              <Message icon error={activityDataLoadingErrorStatus} hidden={!activityDataLoadingErrorStatus}>
-                <Message.Content>
-                  <Message.Header>
-                    Error
-                  </Message.Header>
-                  <p>
-                    We failed to load the activity data from GitHub.
-                  </p>
-                </Message.Content>
-              </Message>
-            </Segment>
-          </Dimmer>
-        </Dimmer.Dimmable>
+        <Message icon error={activityDataLoadingErrorStatus} hidden={!activityDataLoadingErrorStatus}>
+          <Message.Content>
+            <Message.Header>
+              Error
+            </Message.Header>
+            <p>
+              We failed to load the activity data from GitHub.
+            </p>
+          </Message.Content>
+        </Message>
 
         {!activityDataLoadingErrorStatus &&
           <Feed>
@@ -84,7 +76,8 @@ class ActivityLog extends Component {
             {feedEvents}
           </Feed>
         }
-      </div>
+
+      </Dimmer.Dimmable>
     )
   }
 }

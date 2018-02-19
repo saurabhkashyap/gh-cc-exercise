@@ -29,14 +29,13 @@ class RepositoryList extends Component {
   render () {
     const {repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
 
-    const maxRepos = 6
+    const maxRepos = 7
 
     const listItems = repositoryData.slice(0, maxRepos).map((repo, index) => {
       return (
         <List.Item key={index}>
           <Icon
             name={repo.fork ? 'fork' : 'book'}
-            size='large'
             title={repo.fork ? 'Fork of another Repository' : 'Source Repository'}
           />
           <List.Content styleName='Content'>
@@ -70,33 +69,28 @@ class RepositoryList extends Component {
     })
 
     return (
-      <div styleName='RepositoryList'>
+      <Dimmer.Dimmable styleName='RepositoryList'>
+        <Dimmer inverted active={repositoryDataLoadingStatus} />
 
-        <Dimmer.Dimmable>
-          <Dimmer inverted active={repositoryDataLoadingStatus || repositoryDataLoadingErrorStatus}>
-            <Segment basic>
-              <Message icon error={repositoryDataLoadingErrorStatus} hidden={!repositoryDataLoadingErrorStatus}>
-                <Message.Content>
-                  <Message.Header>
-                    Error
-                  </Message.Header>
-                  <p>
-                    We failed to load the repository data from GitHub.
-                  </p>
-                </Message.Content>
-              </Message>
-            </Segment>
-          </Dimmer>
-        </Dimmer.Dimmable>
+        <Message icon error={repositoryDataLoadingErrorStatus} hidden={!repositoryDataLoadingErrorStatus}>
+          <Message.Content>
+            <Message.Header>
+              Error
+            </Message.Header>
+            <p>
+              We failed to load the repository data from GitHub.
+            </p>
+          </Message.Content>
+        </Message>
 
         {!repositoryDataLoadingErrorStatus &&
-        <List>
-          <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
-          {listItems}
-        </List>
+          <List>
+            <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
+            {listItems}
+          </List>
         }
 
-      </div>
+      </Dimmer.Dimmable>
     )
   }
 }
