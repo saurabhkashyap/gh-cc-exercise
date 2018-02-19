@@ -53,10 +53,6 @@ class RepositoryList extends Component {
                   {repo.stargazers_count}
                 </Label>
                 <Label basic styleName='Label'>
-                  <Icon name='eye' />
-                  {repo.watchers_count}
-                </Label>
-                <Label basic styleName='Label'>
                   <Icon name='fork' />
                   {repo.forks_count}
                 </Label>
