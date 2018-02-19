@@ -4,6 +4,14 @@ body {
   font-family: sans-serif;
 }
 
-.Grid {
-  margin-top: 4em !important;
+.App {
+  // Prevent content from being covered by footer.
+  padding-bottom: 4rem;
+
+  // Lower the grid on large screens.
+  @media (min-width: 768px) {
+    .Grid {
+      margin-top: 4rem;
+    }
+  }
 }

@@ -12,14 +12,14 @@ import styles from './app.scss'
 class App extends Component {
   render () {
     return (
-      <div>
+      <div className={styles.App}>
         <Header />
         <Grid stackable container className={styles.Grid}>
           <Grid.Row>
-            <Grid.Column width={5}>
+            <Grid.Column width={4}>
               <ProfileContainer />
             </Grid.Column>
-            <Grid.Column width={11}>
+            <Grid.Column width={12}>
               <Explorer />
             </Grid.Column>
           </Grid.Row>
