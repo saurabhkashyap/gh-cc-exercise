@@ -10,11 +10,29 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='0'>
-        Pull Requests
+        Activity
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='0' styleName='Pane'>
+        <Header>
+          Activity
+          <Header.Subheader>
+            Issues and pull requests recently authored by this user
+          </Header.Subheader>
+        </Header>
+        <ActivityLogContainer />
+      </Tab.Pane>
+    )
+  },
+  {
+    menuItem: (
+      <Menu.Item key='1'>
+        Pull Requests
+      </Menu.Item>
+    ),
+    pane: (
+      <Tab.Pane key='1' styleName='Pane'>
         <Header>
           Pull Requests
           <Header.Subheader>
@@ -27,12 +45,12 @@ const panes = [
   },
   {
     menuItem: (
-      <Menu.Item key='1'>
+      <Menu.Item key='2'>
         Repositories
       </Menu.Item>
     ),
     pane: (
-      <Tab.Pane key='1' styleName='Pane'>
+      <Tab.Pane key='2' styleName='Pane'>
         <Header>
           Repositories
           <Header.Subheader>
@@ -40,24 +58,6 @@ const panes = [
           </Header.Subheader>
         </Header>
         <RepositoryListContainer />
-      </Tab.Pane>
-    )
-  },
-  {
-    menuItem: (
-      <Menu.Item key='2'>
-        Activity
-      </Menu.Item>
-    ),
-    pane: (
-      <Tab.Pane key='2' styleName='Pane'>
-        <Header>
-          Activity
-          <Header.Subheader>
-            Issues and pull requests recently authored by this user
-          </Header.Subheader>
-        </Header>
-        <ActivityLogContainer />
       </Tab.Pane>
     )
   }

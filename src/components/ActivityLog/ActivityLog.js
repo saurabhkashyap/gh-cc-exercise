@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Feed, Image, Loader, Message, Segment} from 'semantic-ui-react'
+import {Dimmer, Feed, Image, Loader, Message} from 'semantic-ui-react'
 import moment from 'moment'
 
 import './activityLog.scss'

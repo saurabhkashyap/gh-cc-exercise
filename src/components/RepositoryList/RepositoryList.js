@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
+import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
 
 import './repositoryList.scss'
 
