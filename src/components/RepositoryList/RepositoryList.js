@@ -1,37 +1,25 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {Doughnut} from 'react-chartjs-2'
+import {LanguageCounter, mapLanguageToColor} from './helpers'
 
 import './repositoryList.scss'
 
 class RepositoryList extends Component {
-  /**
-   * Returns the name of the color that (arbitrarily) corresponds to the language whose name is passed in.
-   *
-   * @param languageName
-   * @return {string}
-   */
-  static mapLanguageToColor (languageName) {
-    switch (languageName) {
-      case 'C++':
-        return 'pink'
-      case 'HTML':
-        return 'red'
-      case 'JavaScript':
-        return 'yellow'
-      case 'Python':
-        return 'blue'
-      default:
-        return 'black'
-    }
-  }
-
   render () {
     const {repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
 
-    const maxRepos = 7
+    // Specify the maximum number of repositories we want to consider.
+    const maxRepos = 10
+    const repos = repositoryData.slice(0, maxRepos)
 
-    const listItems = repositoryData.slice(0, maxRepos).map((repo, index) => {
+    // Instantiate a language counter, which will accumulate data for the chart.
+    const languageCounter = new LanguageCounter()
+
+    const listItems = repos.map((repo, index) => {
+      languageCounter.countOccurrence(repo.language)
+
       return (
         <List.Item key={index}>
           <Icon
@@ -56,7 +44,7 @@ class RepositoryList extends Component {
                   {repo.forks_count}
                 </Label>
                 {repo.language &&
-                  <Label basic color={RepositoryList.mapLanguageToColor(repo.language)} styleName='Label' title={`Primary language is ${repo.language}`}>
+                  <Label basic color={mapLanguageToColor(repo.language).name} styleName='Label' title={`Primary language is ${repo.language}`}>
                     <Icon name='circle' />
                     {repo.language}
                   </Label>
@@ -84,10 +72,47 @@ class RepositoryList extends Component {
         </Message>
 
         {!repositoryDataLoadingErrorStatus &&
-          <List>
+          <div>
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
-            {listItems}
-          </List>
+            {!repositoryDataLoadingStatus &&
+              <blockquote>
+                <Doughnut
+                  data={languageCounter}
+                  height={200}
+                  width={200}
+                  options={{
+                    legend: {
+                      labels: {
+                        fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                        fontSize: 14
+                      },
+                      onClick: () => {
+                      }
+                    },
+                    responsive: false,
+                    title: {
+                      display: true,
+                      text: 'Repositories by Language',
+                      fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                      fontColor: '#000',
+                      fontSize: 14
+                    },
+                    tooltips: {
+                      bodyFontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                      bodyFontSize: 14,
+                      callbacks: {
+                        label: (tooltipItem, data) => { return `${tooltipItem.yLabel} repositories` },
+                        title: (tooltipItems, data) => { return tooltipItems[0].xLabel }
+                      }
+                    }
+                  }}
+                />
+              </blockquote>
+            }
+            <List styleName='list'>
+              {listItems}
+            </List>
+          </div>
         }
 
       </Dimmer.Dimmable>
