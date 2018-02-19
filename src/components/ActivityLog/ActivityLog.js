@@ -9,6 +9,8 @@ class ActivityLog extends Component {
   render () {
     const {activityData, activityDataLoadingStatus, activityDataLoadingErrorStatus} = this.props
 
+    const maxEvents = 9
+
     // Generate an array of `Feed.Event`s, representing the activity log entries related to Issues and Pull Requests.
     //
     // TODO: Move the filtration to the reducer or to a `reselect` selector, so it only runs once per fetched data set.
@@ -18,7 +20,7 @@ class ActivityLog extends Component {
         entry.type === 'IssuesEvent' ||
         entry.type === 'PullRequestEvent'
       )
-    }).map((entry, index) => {
+    }).slice(0, maxEvents).map((entry, index) => {
       const {
         actor,
         created_at,
@@ -34,7 +36,7 @@ class ActivityLog extends Component {
       return (
         <Feed.Event key={index}>
           <Feed.Label>
-            <Image src={actor.avatar_url} styleName='Avatar' />
+            <Image src={actor.avatar_url} styleName='Avatar'/>
           </Feed.Label>
           <Feed.Content>
             <Feed.Date title={createdAtMoment.format('MMMM D, YYYY [at] h:mm A')}>
