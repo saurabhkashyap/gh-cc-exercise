@@ -4,6 +4,10 @@ import activityDataReducer from './activityDataReducer'
 import activityDataLoadingStatusReducer from './activityDataLoadingStatusReducer'
 import activityDataLoadingErrorStatusReducer from './activityDataLoadingErrorStatusReducer'
 
+import mergeDataReducer from './mergeDataReducer'
+import mergeDataLoadingStatusReducer from './mergeDataLoadingStatusReducer'
+import mergeDataLoadingErrorStatusReducer from './mergeDataLoadingErrorStatusReducer'
+
 import profileDataReducer from './profileDataReducer'
 import profileDataLoadingStatusReducer from './profileDataLoadingStatusReducer'
 import profileDataLoadingErrorStatusReducer from './profileDataLoadingErrorStatusReducer'
@@ -18,6 +22,10 @@ export default combineReducers({
   activityData: activityDataReducer,
   activityDataLoadingStatus: activityDataLoadingStatusReducer,
   activityDataLoadingErrorStatus: activityDataLoadingErrorStatusReducer,
+
+  mergeData: mergeDataReducer,
+  mergeDataLoadingStatus: mergeDataLoadingStatusReducer,
+  mergeDataLoadingErrorStatus: mergeDataLoadingErrorStatusReducer,
 
   profileData: profileDataReducer,
   profileDataLoadingStatus: profileDataLoadingStatusReducer,

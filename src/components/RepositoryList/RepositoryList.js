@@ -39,10 +39,10 @@ class RepositoryList extends Component {
             size='large'
             title={repo.fork ? 'Fork of another Repository' : 'Source Repository'}
           />
-          <List.Content>
-            <List.Header as='a' href={repo.html_url} title={`View ${repo.full_name} on GitHub`}>
+          <List.Content styleName='Content'>
+            <a href={repo.html_url} title={`View ${repo.full_name} on GitHub`}>
               {repo.name}
-            </List.Header>
+            </a>
             <List.Description>
               {repo.description}
             </List.Description>
@@ -95,6 +95,7 @@ class RepositoryList extends Component {
           {listItems}
         </List>
         }
+
       </div>
     )
   }

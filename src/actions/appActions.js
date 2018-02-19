@@ -1,10 +1,16 @@
 import {
-  SET_PROFILE_DATA,
-  SET_PROFILE_DATA_LOADING_STATUS,
-  SET_PROFILE_DATA_LOADING_ERROR_STATUS,
   SET_ACTIVITY_DATA,
   SET_ACTIVITY_DATA_LOADING_STATUS,
   SET_ACTIVITY_DATA_LOADING_ERROR_STATUS,
+
+  SET_MERGE_DATA,
+  SET_MERGE_DATA_LOADING_STATUS,
+  SET_MERGE_DATA_LOADING_ERROR_STATUS,
+
+  SET_PROFILE_DATA,
+  SET_PROFILE_DATA_LOADING_STATUS,
+  SET_PROFILE_DATA_LOADING_ERROR_STATUS,
+
   SET_REPOSITORY_DATA,
   SET_REPOSITORY_DATA_LOADING_STATUS,
   SET_REPOSITORY_DATA_LOADING_ERROR_STATUS
@@ -73,6 +79,27 @@ const setRepositoryDataLoadingErrorStatus = (status) => {
   }
 }
 
+const storeMergeData = (mergeData) => {
+  return {
+    type: SET_MERGE_DATA,
+    payload: {mergeData}
+  }
+}
+
+const setMergeDataLoadingStatus = (status) => {
+  return {
+    type: SET_MERGE_DATA_LOADING_STATUS,
+    payload: {status}
+  }
+}
+
+const setMergeDataLoadingErrorStatus = (status) => {
+  return {
+    type: SET_MERGE_DATA_LOADING_ERROR_STATUS,
+    payload: {status}
+  }
+}
+
 export const loadProfileData = () => {
   return (dispatch, getState) => {
     const {username} = getState()
@@ -105,6 +132,18 @@ export const loadRepositoryData = () => {
       dataProcessor: storeRepositoryData,
       loadingStatusController: setRepositoryDataLoadingStatus,
       errorStatusController: setRepositoryDataLoadingErrorStatus
+    }))
+  }
+}
+
+export const loadMergeData = () => {
+  return (dispatch, getState) => {
+    const {username} = getState()
+    dispatch(setMergeDataLoadingStatus(true))
+    dispatch(fetchJsonResource(`https://api.github.com/search/issues?q=author:${username}+type:pr+is:merged&sort=updated`, {
+      dataProcessor: storeMergeData,
+      loadingStatusController: setMergeDataLoadingStatus,
+      errorStatusController: setMergeDataLoadingErrorStatus
     }))
   }
 }

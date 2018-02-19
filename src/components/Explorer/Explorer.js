@@ -1,6 +1,7 @@
 import React from 'react'
 import {Header, Menu, Tab} from 'semantic-ui-react'
 import {ActivityLogContainer} from 'components/ActivityLog'
+import {MergeListContainer} from 'components/MergeList'
 import {RepositoryListContainer} from 'components/RepositoryList'
 
 import './explorer.scss'
@@ -9,16 +10,18 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='0'>
-        Contributions
+        Pull Requests
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='0' styleName='Pane'>
         <Header>
-          Overview
-          <Header.Subheader>An excuse to render some charts</Header.Subheader>
+          Pull Requests
+          <Header.Subheader>
+            Recently-updated merged pull requests authored by this user
+          </Header.Subheader>
         </Header>
-        <p>Overview stuff...</p>
+        <MergeListContainer />
       </Tab.Pane>
     )
   },
@@ -32,7 +35,9 @@ const panes = [
       <Tab.Pane key='1' styleName='Pane'>
         <Header>
           Repositories
-          <Header.Subheader>Recently updated public repositories owned by this user</Header.Subheader>
+          <Header.Subheader>
+            Recently-updated repositories owned by this user
+          </Header.Subheader>
         </Header>
         <RepositoryListContainer />
       </Tab.Pane>
@@ -48,7 +53,9 @@ const panes = [
       <Tab.Pane key='2' styleName='Pane'>
         <Header>
           Activity
-          <Header.Subheader>Public issues and pull requests recently opened by this user</Header.Subheader>
+          <Header.Subheader>
+            Issues and pull requests recently authored by this user
+          </Header.Subheader>
         </Header>
         <ActivityLogContainer />
       </Tab.Pane>
