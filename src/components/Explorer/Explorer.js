@@ -9,11 +9,27 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='0'>
-        Repositories
+        Contributions
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='0' styleName='Pane'>
+        <Header>
+          Overview
+          <Header.Subheader>An excuse to render some charts</Header.Subheader>
+        </Header>
+        <p>Overview stuff...</p>
+      </Tab.Pane>
+    )
+  },
+  {
+    menuItem: (
+      <Menu.Item key='1'>
+        Repositories
+      </Menu.Item>
+    ),
+    pane: (
+      <Tab.Pane key='1' styleName='Pane'>
         <Header>
           Repositories
           <Header.Subheader>Recently updated public repositories owned by this user</Header.Subheader>
@@ -24,12 +40,12 @@ const panes = [
   },
   {
     menuItem: (
-      <Menu.Item key='1'>
+      <Menu.Item key='2'>
         Activity
       </Menu.Item>
     ),
     pane: (
-      <Tab.Pane key='1' styleName='Pane'>
+      <Tab.Pane key='2' styleName='Pane'>
         <Header>
           Activity
           <Header.Subheader>Public issues and pull requests recently opened by this user</Header.Subheader>
