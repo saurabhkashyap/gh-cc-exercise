@@ -89,10 +89,17 @@ class MergeList extends Component {
         </Message>
 
         {!mergeDataLoadingErrorStatus &&
-          <List>
+          <div>
             <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
-            {listItems}
-          </List>
+            {!mergeDataLoadingStatus &&
+              <Label basic ribbon='left'>
+                <p>Number of Pull Requests per Repository</p>
+              </Label>
+            }
+            <List>
+              {listItems}
+            </List>
+          </div>
         }
 
       </Dimmer.Dimmable>

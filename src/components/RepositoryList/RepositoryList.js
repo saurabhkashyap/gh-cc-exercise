@@ -95,7 +95,7 @@ class RepositoryList extends Component {
                       fontColor: '#000',
                       fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
                       fontSize: 14,
-                      text: 'Repositories by Language'
+                      text: 'Number of Repositories per Language'
                     },
                     tooltips: {
                       callbacks: {
