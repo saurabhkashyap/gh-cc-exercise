@@ -8,10 +8,9 @@ import './repositoryList.scss'
 
 class RepositoryList extends Component {
   render () {
-    const {repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
+    const {maxRepos, repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
 
-    // Specify the maximum number of repositories we want to consider.
-    const maxRepos = 10
+    // Reference a limited number of repositories.
     const repos = repositoryData.slice(0, maxRepos)
 
     // Instantiate a language counter, which will accumulate data for the chart.
@@ -78,13 +77,13 @@ class RepositoryList extends Component {
               <Doughnut
                 data={languageCounter}
                 height={200}
-                width={250}
+                width={260}
                 options={{
                   legend: {
                     labels: {
                       boxWidth: 14,
                       fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                      fontSize: 14
+                      fontSize: 13
                     },
                     onClick: () => {},
                     position: 'left'
@@ -122,6 +121,7 @@ class RepositoryList extends Component {
 }
 
 RepositoryList.propTypes = {
+  maxRepos: PropTypes.number.isRequired,
   repositoryData: PropTypes.array.isRequired,
   repositoryDataLoadingStatus: PropTypes.bool.isRequired,
   repositoryDataLoadingErrorStatus: PropTypes.bool.isRequired

@@ -10,10 +10,11 @@ class MergeListContainer extends Component {
   }
 
   render () {
-    const {mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
+    const {maxMerges, mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
 
     return (
       <MergeList
+        maxMerges={maxMerges}
         mergeData={mergeData}
         mergeDataLoadingStatus={mergeDataLoadingStatus}
         mergeDataLoadingErrorStatus={mergeDataLoadingErrorStatus}
@@ -36,6 +37,7 @@ const mapDispatchToProps = {
 
 MergeListContainer.propTypes = {
   loadMergeData: PropTypes.func.isRequired,
+  maxMerges: PropTypes.number.isRequired,
   mergeData: PropTypes.object.isRequired,
   mergeDataLoadingStatus: PropTypes.bool.isRequired,
   mergeDataLoadingErrorStatus: PropTypes.bool.isRequired

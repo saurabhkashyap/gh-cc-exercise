@@ -10,10 +10,11 @@ class RepositoryListContainer extends Component {
   }
 
   render () {
-    const {repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
+    const {maxRepos, repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
 
     return (
       <RepositoryList
+        maxRepos={maxRepos}
         repositoryData={repositoryData}
         repositoryDataLoadingStatus={repositoryDataLoadingStatus}
         repositoryDataLoadingErrorStatus={repositoryDataLoadingErrorStatus}
@@ -36,6 +37,7 @@ const mapDispatchToProps = {
 
 RepositoryListContainer.propTypes = {
   loadRepositoryData: PropTypes.func.isRequired,
+  maxRepos: PropTypes.number.isRequired,
   repositoryData: PropTypes.array.isRequired,
   repositoryDataLoadingStatus: PropTypes.bool.isRequired,
   repositoryDataLoadingErrorStatus: PropTypes.bool.isRequired

@@ -26,11 +26,9 @@ class MergeList extends Component {
   }
 
   render () {
-    const {mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
+    const {maxMerges, mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
 
     console.log('mergeData', mergeData)
-
-    const maxMerges = 15
 
     const listItems = mergeData.hasOwnProperty('items') ? mergeData.items.slice(0, maxMerges).map((pullReq, index) => {
       const isOwner = pullReq.author_association === 'OWNER'
@@ -103,6 +101,7 @@ class MergeList extends Component {
 }
 
 MergeList.propTypes = {
+  maxMerges: PropTypes.number.isRequired,
   mergeData: PropTypes.object.isRequired,
   mergeDataLoadingStatus: PropTypes.bool.isRequired,
   mergeDataLoadingErrorStatus: PropTypes.bool.isRequired

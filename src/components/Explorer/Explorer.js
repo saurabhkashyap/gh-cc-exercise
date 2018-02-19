@@ -10,18 +10,20 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='0'>
-        Activity
+        Repositories
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='0' styleName='Pane'>
         <Header>
-          Activity
+          Repositories
           <Header.Subheader>
-            Public Issues and Pull Requests recently authored by this user
+            The most recently-updated, public Repositories owned by this user
           </Header.Subheader>
         </Header>
-        <ActivityLogContainer />
+        <RepositoryListContainer
+          maxRepos={10}
+        />
       </Tab.Pane>
     )
   },
@@ -36,28 +38,12 @@ const panes = [
         <Header>
           Pull Requests
           <Header.Subheader>
-            Recently-updated, public, <em>merged</em> Pull Requests authored by this user
+            The most recently-updated, public, <em>merged</em> Pull Requests authored by this user
           </Header.Subheader>
         </Header>
-        <MergeListContainer />
-      </Tab.Pane>
-    )
-  },
-  {
-    menuItem: (
-      <Menu.Item key='2'>
-        Repositories
-      </Menu.Item>
-    ),
-    pane: (
-      <Tab.Pane key='2' styleName='Pane'>
-        <Header>
-          Repositories
-          <Header.Subheader>
-            Recently-updated public Repositories owned by this user
-          </Header.Subheader>
-        </Header>
-        <RepositoryListContainer />
+        <MergeListContainer
+          maxMerges={13}
+        />
       </Tab.Pane>
     )
   }
