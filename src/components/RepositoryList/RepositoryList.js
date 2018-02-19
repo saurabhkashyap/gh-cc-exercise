@@ -75,41 +75,42 @@ class RepositoryList extends Component {
           <div>
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
-              <blockquote>
-                <Doughnut
-                  data={languageCounter}
-                  height={200}
-                  width={200}
-                  options={{
-                    legend: {
-                      labels: {
-                        fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                        fontSize: 14
-                      },
-                      onClick: () => {
-                      }
-                    },
-                    responsive: false,
-                    title: {
-                      display: true,
-                      text: 'Repositories by Language',
+              <Doughnut
+                data={languageCounter}
+                height={200}
+                width={250}
+                options={{
+                  legend: {
+                    labels: {
+                      boxWidth: 14,
                       fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                      fontColor: '#000',
                       fontSize: 14
                     },
-                    tooltips: {
-                      bodyFontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                      bodyFontSize: 14,
-                      callbacks: {
-                        label: (tooltipItem, data) => { return `${tooltipItem.yLabel} repositories` },
-                        title: (tooltipItems, data) => { return tooltipItems[0].xLabel }
+                    onClick: () => {},
+                    position: 'left'
+                  },
+                  responsive: false,
+                  title: {
+                    display: true,
+                    fontColor: '#000',
+                    fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                    fontSize: 14,
+                    text: 'Repositories by Language'
+                  },
+                  tooltips: {
+                    callbacks: {
+                      label: (tooltipItem, data) => {
+                        const numRepos = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
+                        const noun = numRepos === 1 ? 'Repository' : 'Repositories'
+                        const languageName = data.labels[tooltipItem.index]
+                        return `${numRepos} ${languageName} ${noun}`
                       }
                     }
-                  }}
-                />
-              </blockquote>
+                  }
+                }}
+              />
             }
-            <List styleName='list'>
+            <List>
               {listItems}
             </List>
           </div>

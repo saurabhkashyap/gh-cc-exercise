@@ -61,7 +61,7 @@ export const LanguageCounter = function () {
  * @param languageName
  */
 LanguageCounter.prototype.countOccurrence = function (languageName) {
-  const sanitizedLanguageName = languageName || 'N/A'
+  const sanitizedLanguageName = languageName || 'Other'
   let indexOfLabel = this.labels.indexOf(sanitizedLanguageName)
 
   // If no label for this language is found, create one and create an associated counter, background color, etc.
