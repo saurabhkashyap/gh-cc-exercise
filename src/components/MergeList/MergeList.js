@@ -43,7 +43,10 @@ class MergeList extends Component {
 
       return (
         <List.Item key={index}>
-          <Icon name='fork' />
+          <Icon
+            name={isOwner ? 'book' : 'fork'}
+            title={isOwner ? "User's own repository" : "Someone else's repository"}
+          />
           <List.Content>
             <a href={pullReq.html_url} title={`View ${pullReqFullName} on GitHub`}>
               {pullReqFullName}

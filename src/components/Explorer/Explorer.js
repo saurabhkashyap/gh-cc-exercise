@@ -18,7 +18,7 @@ const panes = [
         <Header>
           Activity
           <Header.Subheader>
-            Issues and pull requests recently authored by this user
+            Public Issues and Pull Requests recently authored by this user
           </Header.Subheader>
         </Header>
         <ActivityLogContainer />
@@ -36,7 +36,7 @@ const panes = [
         <Header>
           Pull Requests
           <Header.Subheader>
-            Recently-updated, <em>merged</em> pull requests authored by this user
+            Recently-updated, public, <em>merged</em> Pull Requests authored by this user
           </Header.Subheader>
         </Header>
         <MergeListContainer />
@@ -54,7 +54,7 @@ const panes = [
         <Header>
           Repositories
           <Header.Subheader>
-            Recently-updated source <em>(i.e. non-fork)</em> repositories owned by this user
+            Recently-updated public Repositories owned by this user
           </Header.Subheader>
         </Header>
         <RepositoryListContainer />

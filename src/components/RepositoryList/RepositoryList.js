@@ -36,7 +36,7 @@ class RepositoryList extends Component {
         <List.Item key={index}>
           <Icon
             name={repo.fork ? 'fork' : 'book'}
-            title={repo.fork ? 'Fork of another Repository' : 'Source Repository'}
+            title={repo.fork ? 'Fork of another repository' : 'Source repository'}
           />
           <List.Content styleName='Content'>
             <a href={repo.html_url} title={`View ${repo.full_name} on GitHub`}>
@@ -47,16 +47,16 @@ class RepositoryList extends Component {
             </List.Description>
             <Item.Extra>
               <Label.Group>
-                <Label basic styleName='Label'>
+                <Label basic styleName='Label' title={`${repo.stargazers_count} stars`}>
                   <Icon name='star' />
                   {repo.stargazers_count}
                 </Label>
-                <Label basic styleName='Label'>
+                <Label basic styleName='Label' title={`${repo.forks_count} forks`}>
                   <Icon name='fork' />
                   {repo.forks_count}
                 </Label>
                 {repo.language &&
-                  <Label basic color={RepositoryList.mapLanguageToColor(repo.language)} styleName='Label'>
+                  <Label basic color={RepositoryList.mapLanguageToColor(repo.language)} styleName='Label' title={`Primary language is ${repo.language}`}>
                     <Icon name='circle' />
                     {repo.language}
                   </Label>
