@@ -36,7 +36,7 @@ class ActivityLog extends Component {
       return (
         <Feed.Event key={index}>
           <Feed.Label>
-            <Image src={actor.avatar_url} styleName='Avatar'/>
+            <Image src={actor.avatar_url} styleName='Avatar' />
           </Feed.Label>
           <Feed.Content>
             <Feed.Date title={createdAtMoment.format('MMMM D, YYYY [at] h:mm A')}>
