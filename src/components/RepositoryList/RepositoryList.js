@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {Dimmer, Header, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
 import {Doughnut} from 'react-chartjs-2'
 import {generateTooltipLabelProcessor, LanguageCounter, mapLanguageToColor, noOp} from './helpers'
 
@@ -8,7 +8,12 @@ import './repositoryList.scss'
 
 class RepositoryList extends Component {
   render () {
-    const {maxRepos, repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
+    const {
+      maxRepos,
+      repositoryData,
+      repositoryDataLoadingStatus,
+      repositoryDataLoadingErrorStatus
+    } = this.props
 
     // Reference a limited number of repositories.
     const repos = repositoryData.slice(0, maxRepos)
@@ -55,9 +60,6 @@ class RepositoryList extends Component {
       )
     })
 
-    // Define some values that will be used by the chart.
-    const fontFamily = "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif"
-
     return (
       <Dimmer.Dimmable styleName='RepositoryList'>
         <Dimmer inverted active={repositoryDataLoadingStatus} />
@@ -78,6 +80,7 @@ class RepositoryList extends Component {
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
               <Label basic ribbon styleName='chartLabel'>
+                <Header as='h5'>Repositories per Language</Header>
                 <Doughnut
                   data={languageCounter}
                   height={200}
@@ -86,20 +89,13 @@ class RepositoryList extends Component {
                     legend: {
                       labels: {
                         boxWidth: 14,
-                        fontFamily,
+                        fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
                         fontSize: 13
                       },
                       onClick: noOp,
                       position: 'left'
                     },
                     responsive: false,
-                    title: {
-                      display: true,
-                      fontColor: '#000',
-                      fontFamily,
-                      fontSize: 14,
-                      text: 'Number of Repositories per Language'
-                    },
                     tooltips: {
                       callbacks: {
                         label: generateTooltipLabelProcessor('repository', 'repositories')
