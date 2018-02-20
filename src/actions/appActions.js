@@ -12,7 +12,7 @@ import {
   SET_REPOSITORY_DATA_LOADING_ERROR_STATUS
 } from 'constants/actionTypes'
 
-const storeProfileData = (profileData) => {
+const setProfileData = (profileData) => {
   return {
     type: SET_PROFILE_DATA,
     payload: {profileData}
@@ -33,7 +33,7 @@ const setProfileDataLoadingErrorStatus = (status) => {
   }
 }
 
-const storeRepositoryData = (repositoryData) => {
+const setRepositoryData = (repositoryData) => {
   return {
     type: SET_REPOSITORY_DATA,
     payload: {repositoryData}
@@ -54,7 +54,7 @@ const setRepositoryDataLoadingErrorStatus = (status) => {
   }
 }
 
-const storePullRequestData = (pullRequestData) => {
+const setPullRequestData = (pullRequestData) => {
   return {
     type: SET_PULL_REQUEST_DATA,
     payload: {pullRequestData}
@@ -80,7 +80,7 @@ export const loadProfileData = () => {
     const {username} = getState()
     dispatch(setProfileDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/users/${username}`, {
-      dataProcessor: storeProfileData,
+      dataProcessor: setProfileData,
       loadingStatusController: setProfileDataLoadingStatus,
       errorStatusController: setProfileDataLoadingErrorStatus
     }))
@@ -92,7 +92,7 @@ export const loadRepositoryData = () => {
     const {username} = getState()
     dispatch(setRepositoryDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/users/${username}/repos?type=owner&sort=updated&direction=desc`, {
-      dataProcessor: storeRepositoryData,
+      dataProcessor: setRepositoryData,
       loadingStatusController: setRepositoryDataLoadingStatus,
       errorStatusController: setRepositoryDataLoadingErrorStatus
     }))
@@ -104,7 +104,7 @@ export const loadPullRequestData = () => {
     const {username} = getState()
     dispatch(setPullRequestDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/search/issues?q=author:${username}+type:pr+is:merged&sort=updated`, {
-      dataProcessor: storePullRequestData,
+      dataProcessor: setPullRequestData,
       loadingStatusController: setPullRequestDataLoadingStatus,
       errorStatusController: setPullRequestDataLoadingErrorStatus
     }))
