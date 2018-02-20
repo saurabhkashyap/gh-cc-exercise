@@ -1,2 +1,7 @@
 import Explorer from './Explorer'
-export default Explorer
+import ExplorerContainer from './ExplorerContainer'
+
+export {
+  Explorer,
+  ExplorerContainer
+}

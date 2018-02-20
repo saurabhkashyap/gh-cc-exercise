@@ -1,58 +1,62 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Header, Menu, Tab} from 'semantic-ui-react'
 import {PullRequestListContainer} from 'components/PullRequestList'
 import {RepositoryListContainer} from 'components/RepositoryList'
 
 import './explorer.scss'
 
-const panes = [
-  {
-    menuItem: (
-      <Menu.Item key='0'>
-        Recent Projects
-      </Menu.Item>
-    ),
-    pane: (
-      <Tab.Pane key='0' styleName='Pane'>
-        <Header>
+const getPanes = (username) => {
+  return [
+    {
+      menuItem: (
+        <Menu.Item key='0'>
           Recent Projects
-          <Header.Subheader>
-            Recent projects at-a-glance
-          </Header.Subheader>
-        </Header>
-        <p>
-          Here's a list of public Repositories this user owns and has updated recently.
-        </p>
-        <RepositoryListContainer
-          maxRepos={10}
-        />
-      </Tab.Pane>
-    )
-  },
-  {
-    menuItem: (
-      <Menu.Item key='1'>
-        Recent Contributions
-      </Menu.Item>
-    ),
-    pane: (
-      <Tab.Pane key='1' styleName='Pane'>
-        <Header>
+        </Menu.Item>
+      ),
+      pane: (
+        <Tab.Pane key='0' styleName='Pane'>
+          <Header>
+            Recent Projects
+            <Header.Subheader>
+              Recent projects at-a-glance
+            </Header.Subheader>
+          </Header>
+          <p>
+            Here's a list of public Repositories <strong>{username}</strong> owns and has updated recently.
+          </p>
+          <RepositoryListContainer
+            maxRepos={10}
+          />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: (
+        <Menu.Item key='1'>
           Recent Contributions
-          <Header.Subheader>
-            Recent contributions at-a-glance
-          </Header.Subheader>
-        </Header>
-        <p>
-          Here's a list of Pull Requests submitted by this user, that have been merged into public Repositories recently.
-        </p>
-        <PullRequestListContainer
-          maxPullRequests={13}
-        />
-      </Tab.Pane>
-    )
-  }
-]
+        </Menu.Item>
+      ),
+      pane: (
+        <Tab.Pane key='1' styleName='Pane'>
+          <Header>
+            Recent Contributions
+            <Header.Subheader>
+              Recent contributions at-a-glance
+            </Header.Subheader>
+          </Header>
+          <p>
+            Here's a list of Pull Requests submitted by <strong>{username}</strong>, that have been merged into public Repositories
+            recently.
+          </p>
+          <PullRequestListContainer
+            maxPullRequests={13}
+          />
+        </Tab.Pane>
+      )
+    }
+  ]
+}
 
 const Explorer = (props) => (
   <Tab
@@ -62,10 +66,14 @@ const Explorer = (props) => (
       secondary: true,
       pointing: true
     }}
-    panes={panes}
+    panes={getPanes(props.username)}
     renderActiveOnly={false}
     styleName='Explorer'
   />
 )
+
+Explorer.propTypes = {
+  username: PropTypes.string.isRequired
+}
 
 export default Explorer
