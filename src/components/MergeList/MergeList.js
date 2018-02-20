@@ -53,7 +53,7 @@ class MergeList extends Component {
                   <Icon name='discussions' />
                   {pullReq.comments}
                 </Label>
-                <Label basic styleName='Label' title={`${authorAssociation} role`}>
+                <Label basic styleName='Label' title={`Repository ${authorAssociation.toLowerCase()}`}>
                   <Icon name={isOwner ? 'home' : 'globe'} />
                   {authorAssociation}
                 </Label>
