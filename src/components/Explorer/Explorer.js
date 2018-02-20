@@ -1,6 +1,5 @@
 import React from 'react'
 import {Header, Menu, Tab} from 'semantic-ui-react'
-import {ActivityLogContainer} from 'components/ActivityLog'
 import {MergeListContainer} from 'components/MergeList'
 import {RepositoryListContainer} from 'components/RepositoryList'
 
@@ -18,7 +17,7 @@ const panes = [
         <Header>
           Repositories
           <Header.Subheader>
-            The most recently-updated, public Repositories owned by this user
+            Recently-updated, public Repositories owned by this user
           </Header.Subheader>
         </Header>
         <RepositoryListContainer
@@ -38,7 +37,7 @@ const panes = [
         <Header>
           Pull Requests
           <Header.Subheader>
-            The most recently-updated, public, <em>merged</em> Pull Requests authored by this user
+            Recently-updated Pull Requests authored by this user, <em>merged</em> into public Repositories
           </Header.Subheader>
         </Header>
         <MergeListContainer
