@@ -80,29 +80,31 @@ class RepositoryList extends Component {
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
               <Grid>
-                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={6}>
+                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
                   <Segment>
                     <Header as='h5' styleName='chartHeader'>Repositories per Language</Header>
-                    <Doughnut
-                      data={languageCounter}
-                      height={200}
-                      options={{
-                        legend: {
-                          labels: {
-                            boxWidth: 14,
-                            fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                            fontSize: 13
+                    <div styleName='chartWrapper'>
+                      <Doughnut
+                        data={languageCounter}
+                        options={{
+                          legend: {
+                            labels: {
+                              boxWidth: 14,
+                              fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                              fontSize: 13
+                            },
+                            onClick: noOp,
+                            position: 'left'
                           },
-                          onClick: noOp,
-                          position: 'left'
-                        },
-                        tooltips: {
-                          callbacks: {
-                            label: generateTooltipLabelProcessor('repository', 'repositories')
+                          maintainAspectRatio: false,
+                          tooltips: {
+                            callbacks: {
+                              label: generateTooltipLabelProcessor('repository', 'repositories')
+                            }
                           }
-                        }
-                      }}
-                    />
+                        }}
+                      />
+                    </div>
                   </Segment>
                 </Grid.Column>
               </Grid>
