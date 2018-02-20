@@ -84,29 +84,31 @@ class PullRequestList extends Component {
             <Loader indeterminate active={pullRequestDataLoadingStatus}>Loading</Loader>
             {!pullRequestDataLoadingStatus &&
               <Grid>
-                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={6}>
+                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
                   <Segment>
                     <Header as='h5' styleName='chartHeader'>Pull Requests per Repository</Header>
-                    <Bar
-                      data={pullRequestCounter}
-                      height={200}
-                      options={{
-                        legend: {
-                          display: false
-                        },
-                        scales: {
-                          xAxes: [{
-                            ticks: {
-                              beginAtZero: true,
-                              stepSize: 1
-                            }
-                          }]
-                        },
-                        tooltips: {
-                          enabled: false
-                        }
-                      }}
-                    />
+                    <div styleName='chartWrapper'>
+                      <Bar
+                        data={pullRequestCounter}
+                        options={{
+                          legend: {
+                            display: false
+                          },
+                          maintainAspectRatio: false,
+                          scales: {
+                            xAxes: [{
+                              ticks: {
+                                beginAtZero: true,
+                                stepSize: 1
+                              }
+                            }]
+                          },
+                          tooltips: {
+                            enabled: false
+                          }
+                        }}
+                      />
+                    </div>
                   </Segment>
                 </Grid.Column>
               </Grid>
