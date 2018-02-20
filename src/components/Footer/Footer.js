@@ -5,7 +5,7 @@ const Footer = props => {
   const currentYear = (new Date()).getFullYear()
 
   return (
-    <footer styleName='App-footer'>
+    <footer styleName='footer'>
       <p>&copy; {currentYear} <a href='https://clearcapital.com'>ClearCapital.com</a>, Inc. All Rights Reserved.</p>
     </footer>
   )

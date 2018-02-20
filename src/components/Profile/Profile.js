@@ -29,7 +29,7 @@ class Profile extends Component {
           <Image src={profileData.avatar_url} />
           <Card.Content>
             <Card.Header>
-              <a href={profileData.html_url} title='View profile on GitHub' styleName='Name'>
+              <a href={profileData.html_url} title='View profile on GitHub' styleName='nameLink'>
                 {profileData.name}
               </a>
             </Card.Header>

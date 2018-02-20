@@ -15,7 +15,7 @@ const getPanes = (username) => {
         </Menu.Item>
       ),
       pane: (
-        <Tab.Pane key='0' styleName='Pane'>
+        <Tab.Pane key='0' styleName='tabPane'>
           <Header>
             Recent Projects
             <Header.Subheader>
@@ -38,7 +38,7 @@ const getPanes = (username) => {
         </Menu.Item>
       ),
       pane: (
-        <Tab.Pane key='1' styleName='Pane'>
+        <Tab.Pane key='1' styleName='tabPane'>
           <Header>
             Recent Contributions
             <Header.Subheader>

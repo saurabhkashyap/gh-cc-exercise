@@ -1,13 +1,10 @@
 .Menu {
-  // Override some Semantic UI styles.
   border-radius: 0 !important;
   border-left-width: 0 !important;
   border-right-width: 0 !important;
-
-  .Logo {
-    height: 1rem;
-    margin-right: 10px;
-  }
 }
 
-
+.menuImage {
+  height: 1rem;
+  margin-right: 10px;
+}

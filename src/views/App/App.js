@@ -11,10 +11,12 @@ import styles from './app.scss'
 
 class App extends Component {
   render () {
+    console.log('styles', styles)
+
     return (
       <div className={styles.App}>
         <Header />
-        <Grid stackable container className={styles.Grid}>
+        <Grid stackable container className={styles.appGrid}>
           <Grid.Row>
             <Grid.Column width={4}>
               <ProfileContainer />

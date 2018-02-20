@@ -49,11 +49,11 @@ class PullRequestList extends Component {
             </List.Description>
             <Item.Extra>
               <Label.Group>
-                <Label basic styleName='Label' title={`${pullRequest.comments} ${commentOrComments}`}>
+                <Label basic styleName='itemLabel' title={`${pullRequest.comments} ${commentOrComments}`}>
                   <Icon name='discussions' />
                   {pullRequest.comments}
                 </Label>
-                <Label basic styleName='Label' title={`Repository ${authorAssociation.toLowerCase()}`}>
+                <Label basic styleName='itemLabel' title={`Repository ${authorAssociation.toLowerCase()}`}>
                   <Icon name={isOwner ? 'home' : 'globe'} />
                   {authorAssociation}
                 </Label>

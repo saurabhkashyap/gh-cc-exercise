@@ -39,16 +39,16 @@ class RepositoryList extends Component {
             </List.Description>
             <Item.Extra>
               <Label.Group>
-                <Label basic styleName='Label' title={`${repo.stargazers_count} stars`}>
+                <Label basic styleName='itemLabel' title={`${repo.stargazers_count} stars`}>
                   <Icon name='star' />
                   {repo.stargazers_count}
                 </Label>
-                <Label basic styleName='Label' title={`${repo.forks_count} forks`}>
+                <Label basic styleName='itemLabel' title={`${repo.forks_count} forks`}>
                   <Icon name='fork' />
                   {repo.forks_count}
                 </Label>
                 {repo.language &&
-                  <Label basic color={mapLanguageToColor(repo.language).name} styleName='Label' title={`Primary language is ${repo.language}`}>
+                  <Label basic color={mapLanguageToColor(repo.language).name} styleName='itemLabel' title={`Primary language is ${repo.language}`}>
                     <Icon name='circle' />
                     {repo.language}
                   </Label>
