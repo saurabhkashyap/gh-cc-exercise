@@ -11,8 +11,6 @@ import styles from './app.scss'
 
 class App extends Component {
   render () {
-    console.log('styles', styles)
-
     return (
       <div className={styles.App}>
         <Header />
