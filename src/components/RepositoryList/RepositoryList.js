@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
 import {Doughnut} from 'react-chartjs-2'
-import {LanguageCounter, mapLanguageToColor} from './helpers'
+import {generateTooltipLabelProcessor, LanguageCounter, mapLanguageToColor, noOp} from './helpers'
 
 import './repositoryList.scss'
 
@@ -55,6 +55,9 @@ class RepositoryList extends Component {
       )
     })
 
+    // Define some values that will be used by the chart.
+    const fontFamily = "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif"
+
     return (
       <Dimmer.Dimmable styleName='RepositoryList'>
         <Dimmer inverted active={repositoryDataLoadingStatus} />
@@ -74,7 +77,7 @@ class RepositoryList extends Component {
           <div>
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
-              <Label basic ribbon='left'>
+              <Label basic ribbon styleName='chartLabel'>
                 <Doughnut
                   data={languageCounter}
                   height={200}
@@ -83,28 +86,23 @@ class RepositoryList extends Component {
                     legend: {
                       labels: {
                         boxWidth: 14,
-                        fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                        fontFamily,
                         fontSize: 13
                       },
-                      onClick: () => {},
+                      onClick: noOp,
                       position: 'left'
                     },
                     responsive: false,
                     title: {
                       display: true,
                       fontColor: '#000',
-                      fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                      fontFamily,
                       fontSize: 14,
                       text: 'Number of Repositories per Language'
                     },
                     tooltips: {
                       callbacks: {
-                        label: (tooltipItem, data) => {
-                          const numRepos = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-                          const noun = numRepos === 1 ? 'Repository' : 'Repositories'
-                          const languageName = data.labels[tooltipItem.index]
-                          return `${numRepos} ${languageName} ${noun}`
-                        }
+                        label: generateTooltipLabelProcessor('repository', 'repositories')
                       }
                     }
                   }}
