@@ -2,7 +2,7 @@
 
 ## Introduction
 
-GH CC Exercise is a web app that displays information about a GitHub user. It was originally developed over a holiday weekend as an exercise in using [`cc-react-scripts`](github.com/clearcapital/cc-react-scripts) and the GitHub REST API v3.
+GH CC Exercise is a web app that displays information about a GitHub user. It was originally developed over a holiday weekend as an exercise in using [`cc-react-scripts`](https://github.com/clearcapital/cc-react-scripts) and the GitHub REST API v3.
 
 ## Screenshot
 
