@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Header, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {Dimmer, Grid, Header, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
 import {HorizontalBar as Bar} from 'react-chartjs-2'
 import moment from 'moment'
 import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullReqHtmlUrl, PullReqCounter} from './helpers'
@@ -65,7 +65,7 @@ class MergeList extends Component {
     }) : []
 
     return (
-      <Dimmer.Dimmable styleName='MergeList'>
+      <Dimmer.Dimmable>
         <Dimmer inverted active={mergeDataLoadingStatus} />
 
         <Message icon error={mergeDataLoadingErrorStatus} hidden={!mergeDataLoadingErrorStatus}>
@@ -83,30 +83,33 @@ class MergeList extends Component {
           <div>
             <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
             {!mergeDataLoadingStatus &&
-              <Label basic ribbon styleName='chartLabel'>
-                <Header as='h5'>Pull Requests per Repository</Header>
-                <Bar
-                  data={pullReqCounter}
-                  height={200}
-                  width={450}
-                  options={{
-                    legend: {
-                      display: false
-                    },
-                    responsive: false,
-                    scales: {
-                      xAxes: [{
-                        ticks: {
-                          beginAtZero: true
+              <Grid>
+                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={6}>
+                  <Segment>
+                    <Header as='h5' styleName='chartHeader'>Pull Requests per Repository</Header>
+                    <Bar
+                      data={pullReqCounter}
+                      height={200}
+                      options={{
+                        legend: {
+                          display: false
+                        },
+                        scales: {
+                          xAxes: [{
+                            ticks: {
+                              beginAtZero: true,
+                              stepSize: 1
+                            }
+                          }]
+                        },
+                        tooltips: {
+                          enabled: false
                         }
-                      }]
-                    },
-                    tooltips: {
-                      enabled: false
-                    }
-                  }}
-                />
-              </Label>
+                      }}
+                    />
+                  </Segment>
+                </Grid.Column>
+              </Grid>
             }
             <List>
               {listItems}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Header, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {Dimmer, Grid, Header, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
 import {Doughnut} from 'react-chartjs-2'
 import {generateTooltipLabelProcessor, LanguageCounter, mapLanguageToColor, noOp} from './helpers'
 
@@ -61,7 +61,7 @@ class RepositoryList extends Component {
     })
 
     return (
-      <Dimmer.Dimmable styleName='RepositoryList'>
+      <Dimmer.Dimmable>
         <Dimmer inverted active={repositoryDataLoadingStatus} />
 
         <Message icon error={repositoryDataLoadingErrorStatus} hidden={!repositoryDataLoadingErrorStatus}>
@@ -79,31 +79,33 @@ class RepositoryList extends Component {
           <div>
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
-              <Label basic ribbon styleName='chartLabel'>
-                <Header as='h5'>Repositories per Language</Header>
-                <Doughnut
-                  data={languageCounter}
-                  height={200}
-                  width={260}
-                  options={{
-                    legend: {
-                      labels: {
-                        boxWidth: 14,
-                        fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
-                        fontSize: 13
-                      },
-                      onClick: noOp,
-                      position: 'left'
-                    },
-                    responsive: false,
-                    tooltips: {
-                      callbacks: {
-                        label: generateTooltipLabelProcessor('repository', 'repositories')
-                      }
-                    }
-                  }}
-                />
-              </Label>
+              <Grid>
+                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={6}>
+                  <Segment>
+                    <Header as='h5' styleName='chartHeader'>Repositories per Language</Header>
+                    <Doughnut
+                      data={languageCounter}
+                      height={200}
+                      options={{
+                        legend: {
+                          labels: {
+                            boxWidth: 14,
+                            fontFamily: "Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif",
+                            fontSize: 13
+                          },
+                          onClick: noOp,
+                          position: 'left'
+                        },
+                        tooltips: {
+                          callbacks: {
+                            label: generateTooltipLabelProcessor('repository', 'repositories')
+                          }
+                        }
+                      }}
+                    />
+                  </Segment>
+                </Grid.Column>
+              </Grid>
             }
             <List>
               {listItems}
