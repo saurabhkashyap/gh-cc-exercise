@@ -1,40 +1,23 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {Bar} from 'react-chartjs-2'
 import moment from 'moment'
+import {makeLowercaseWithUppercaseFirstChar, parsePullReqHtmlUrl} from './helpers'
 
 import './mergeList.scss'
 
 class MergeList extends Component {
-  static lowercaseWithCapitalFirstLetter (str) {
-    const capitalFirstLetter = str.charAt(0).toUpperCase()
-    const lowercaseStr = str.toLowerCase()
-    return capitalFirstLetter + lowercaseStr.slice(1)
-  }
-
-  static parsePullReqHtmlUrl (url) {
-    const matches = url.match(/(https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+))\//i)
-    const repoHomepage = matches[1]
-    const repoOwner = matches[2]
-    const repoName = matches[3]
-
-    return {
-      repoHomepage,
-      repoOwner,
-      repoName
-    }
-  }
-
   render () {
     const {maxMerges, mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
 
     console.log('mergeData', mergeData)
 
     const listItems = mergeData.hasOwnProperty('items') ? mergeData.items.slice(0, maxMerges).map((pullReq, index) => {
-      const isOwner = pullReq.author_association === 'OWNER'
-      const authorAssociation = MergeList.lowercaseWithCapitalFirstLetter(pullReq.author_association)
+      const isOwner = (pullReq.author_association === 'OWNER')
+      const authorAssociation = makeLowercaseWithUppercaseFirstChar(pullReq.author_association)
       const updatedAtMoment = moment(pullReq.updated_at)
-      const {repoHomepage, repoOwner, repoName} = MergeList.parsePullReqHtmlUrl(pullReq.html_url)
+      const {repoHomepage, repoOwner, repoName} = parsePullReqHtmlUrl(pullReq.html_url)
       const repoFullName = `${repoOwner}/${repoName}`
       const pullReqFullName = `#${pullReq.number}: ${pullReq.title}`
       const commentOrComments = (pullReq.comments === 1) ? 'comment' : 'comments'
@@ -92,8 +75,16 @@ class MergeList extends Component {
           <div>
             <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
             {!mergeDataLoadingStatus &&
-              <Label basic ribbon='left'>
+              <Label basic ribbon>
                 <p>Number of Pull Requests per Repository</p>
+                <Bar
+                  data={{}}
+                  height={200}
+                  width={260}
+                  options={{
+                    responsive: false
+                  }}
+                />
               </Label>
             }
             <List>
