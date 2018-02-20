@@ -9,17 +9,20 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='0'>
-        Repositories
+        Recent Projects
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='0' styleName='Pane'>
         <Header>
-          Repositories
+          Recent Projects
           <Header.Subheader>
-            Recently-updated public Repositories owned by this user
+            Recent projects at-a-glance
           </Header.Subheader>
         </Header>
+        <p>
+          Here's a list of public Repositories this user owns and has updated recently.
+        </p>
         <RepositoryListContainer
           maxRepos={10}
         />
@@ -29,17 +32,20 @@ const panes = [
   {
     menuItem: (
       <Menu.Item key='1'>
-        Pull Requests
+        Recent Contributions
       </Menu.Item>
     ),
     pane: (
       <Tab.Pane key='1' styleName='Pane'>
         <Header>
-          Pull Requests
+          Recent Contributions
           <Header.Subheader>
-            Recently-updated Pull Requests authored by this user, <em>merged</em> into public Repositories
+            Recent contributions at-a-glance
           </Header.Subheader>
         </Header>
+        <p>
+          Here's a list of Pull Requests submitted by this user, that have been merged into public Repositories recently.
+        </p>
         <PullRequestListContainer
           maxPullRequests={13}
         />
