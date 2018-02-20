@@ -8,7 +8,7 @@ const Header = props => {
     <Menu size='massive' widths={1} inverted styleName='Menu'>
       <Menu.Item header>
         <Image src={logo} styleName='menuImage' />
-        Exercise
+        GH CC Exercise
       </Menu.Item>
     </Menu>
   )
