@@ -74,7 +74,7 @@ class PullRequestList extends Component {
               Error
             </Message.Header>
             <p>
-              We failed to load the Pull Request data from GitHub.
+              We failed to load the Pull Request data.
             </p>
           </Message.Content>
         </Message>
@@ -86,7 +86,9 @@ class PullRequestList extends Component {
               <Grid>
                 <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
                   <Segment>
-                    <Header as='h5' styleName='chartHeader'>Pull Requests per Repository</Header>
+                    <Header as='h5' styleName='chartHeader'>
+                      Pull Requests per Repository
+                    </Header>
                     <div styleName='chartWrapper'>
                       <Bar
                         data={pullRequestCounter}

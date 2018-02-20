@@ -18,7 +18,7 @@ class Profile extends Component {
               Error
             </Message.Header>
             <p>
-              We failed to load the Profile data from GitHub.
+              We failed to load the Profile data.
             </p>
           </Message.Content>
         </Message>

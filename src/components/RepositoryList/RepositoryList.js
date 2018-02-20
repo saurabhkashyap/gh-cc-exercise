@@ -70,7 +70,7 @@ class RepositoryList extends Component {
               Error
             </Message.Header>
             <p>
-              We failed to load the Repository data from GitHub.
+              We failed to load the Repository data.
             </p>
           </Message.Content>
         </Message>
@@ -82,7 +82,9 @@ class RepositoryList extends Component {
               <Grid>
                 <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
                   <Segment>
-                    <Header as='h5' styleName='chartHeader'>Repositories per Language</Header>
+                    <Header as='h5' styleName='chartHeader'>
+                      Repositories per Language
+                    </Header>
                     <div styleName='chartWrapper'>
                       <Doughnut
                         data={languageCounter}
