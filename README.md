@@ -12,8 +12,7 @@ GH CC Exercise is a web app that displays information about a GitHub user. It wa
 
 GH CC Exercise was built using the following technologies:
 
-* React (via [`create-react-app`](https://github.com/facebookincubator/create-react-app))
-* [`cc-react-scripts`](github.com/clearcapital/cc-react-scripts)
+* React (via [`create-react-app`](https://github.com/facebookincubator/create-react-app) with [`cc-react-scripts`](https://github.com/clearcapital/cc-react-scripts))
 * Redux
 * Redux Thunk
 * [`babel-plugin-react-css-modules`](https://github.com/gajus/babel-plugin-react-css-modules)
