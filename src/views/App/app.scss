@@ -4,9 +4,9 @@ body {
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-.appGrid {
-  // Lower the grid on large screens.
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .appGrid {
+    // Lower the grid on large screens.
     margin-top: 4rem !important;
   }
 }
