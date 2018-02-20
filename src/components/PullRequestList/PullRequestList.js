@@ -74,7 +74,7 @@ class PullRequestList extends Component {
               Error
             </Message.Header>
             <p>
-              We failed to load the pullRequest data from GitHub.
+              We failed to load the Pull Request data from GitHub.
             </p>
           </Message.Content>
         </Message>

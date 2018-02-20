@@ -70,7 +70,7 @@ class RepositoryList extends Component {
               Error
             </Message.Header>
             <p>
-              We failed to load the repository data from GitHub.
+              We failed to load the Repository data from GitHub.
             </p>
           </Message.Content>
         </Message>
