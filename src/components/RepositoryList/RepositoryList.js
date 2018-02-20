@@ -30,7 +30,7 @@ class RepositoryList extends Component {
             name={repo.fork ? 'fork' : 'book'}
             title={repo.fork ? 'Fork of another repository' : 'Source repository'}
           />
-          <List.Content styleName='Content'>
+          <List.Content>
             <a href={repo.html_url} title={`View ${repo.full_name} on GitHub`}>
               {repo.name}
             </a>
