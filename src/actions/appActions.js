@@ -1,8 +1,4 @@
 import {
-  SET_ACTIVITY_DATA,
-  SET_ACTIVITY_DATA_LOADING_STATUS,
-  SET_ACTIVITY_DATA_LOADING_ERROR_STATUS,
-
   SET_MERGE_DATA,
   SET_MERGE_DATA_LOADING_STATUS,
   SET_MERGE_DATA_LOADING_ERROR_STATUS,
@@ -33,27 +29,6 @@ const setProfileDataLoadingStatus = (status) => {
 const setProfileDataLoadingErrorStatus = (status) => {
   return {
     type: SET_PROFILE_DATA_LOADING_ERROR_STATUS,
-    payload: {status}
-  }
-}
-
-const storeActivityData = (activityData) => {
-  return {
-    type: SET_ACTIVITY_DATA,
-    payload: {activityData}
-  }
-}
-
-const setActivityDataLoadingStatus = (status) => {
-  return {
-    type: SET_ACTIVITY_DATA_LOADING_STATUS,
-    payload: {status}
-  }
-}
-
-const setActivityDataLoadingErrorStatus = (status) => {
-  return {
-    type: SET_ACTIVITY_DATA_LOADING_ERROR_STATUS,
     payload: {status}
   }
 }
@@ -108,18 +83,6 @@ export const loadProfileData = () => {
       dataProcessor: storeProfileData,
       loadingStatusController: setProfileDataLoadingStatus,
       errorStatusController: setProfileDataLoadingErrorStatus
-    }))
-  }
-}
-
-export const loadActivityData = () => {
-  return (dispatch, getState) => {
-    const {username} = getState()
-    dispatch(setActivityDataLoadingStatus(true))
-    dispatch(fetchJsonResource(`https://api.github.com/users/${username}/events/public`, {
-      dataProcessor: storeActivityData,
-      loadingStatusController: setActivityDataLoadingStatus,
-      errorStatusController: setActivityDataLoadingErrorStatus
     }))
   }
 }
