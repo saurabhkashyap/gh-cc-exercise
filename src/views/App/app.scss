@@ -4,11 +4,6 @@ body {
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-.App {
-  // Prevent content from being covered by footer.
-  padding-bottom: 4rem;
-}
-
 .appGrid {
   // Lower the grid on large screens.
   @media (min-width: 768px) {

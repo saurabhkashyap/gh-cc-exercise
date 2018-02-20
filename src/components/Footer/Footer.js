@@ -1,14 +1,15 @@
 import React from 'react'
+import {Icon} from 'semantic-ui-react'
 import './footer.scss'
 
-const Footer = props => {
-  const currentYear = (new Date()).getFullYear()
+const repoUrl = 'https://github.com/gitname/gh-cc-exercise'
 
-  return (
-    <footer styleName='footer'>
-      <p>&copy; {currentYear} <a href='https://clearcapital.com'>ClearCapital.com</a>, Inc. All Rights Reserved.</p>
-    </footer>
-  )
-}
+const Footer = props => (
+  <footer styleName='footer'>
+    <p>
+      <a href={repoUrl} title='Fork this project on GitHub'>Fork this project on GitHub. <Icon name='github' /></a>
+    </p>
+  </footer>
+)
 
 export default Footer
