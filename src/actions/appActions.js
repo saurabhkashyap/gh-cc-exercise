@@ -1,7 +1,7 @@
 import {
-  SET_MERGE_DATA,
-  SET_MERGE_DATA_LOADING_STATUS,
-  SET_MERGE_DATA_LOADING_ERROR_STATUS,
+  SET_PULL_REQUEST_DATA,
+  SET_PULL_REQUEST_DATA_LOADING_STATUS,
+  SET_PULL_REQUEST_DATA_LOADING_ERROR_STATUS,
 
   SET_PROFILE_DATA,
   SET_PROFILE_DATA_LOADING_STATUS,
@@ -54,23 +54,23 @@ const setRepositoryDataLoadingErrorStatus = (status) => {
   }
 }
 
-const storeMergeData = (mergeData) => {
+const storePullRequestData = (pullRequestData) => {
   return {
-    type: SET_MERGE_DATA,
-    payload: {mergeData}
+    type: SET_PULL_REQUEST_DATA,
+    payload: {pullRequestData}
   }
 }
 
-const setMergeDataLoadingStatus = (status) => {
+const setPullRequestDataLoadingStatus = (status) => {
   return {
-    type: SET_MERGE_DATA_LOADING_STATUS,
+    type: SET_PULL_REQUEST_DATA_LOADING_STATUS,
     payload: {status}
   }
 }
 
-const setMergeDataLoadingErrorStatus = (status) => {
+const setPullRequestDataLoadingErrorStatus = (status) => {
   return {
-    type: SET_MERGE_DATA_LOADING_ERROR_STATUS,
+    type: SET_PULL_REQUEST_DATA_LOADING_ERROR_STATUS,
     payload: {status}
   }
 }
@@ -99,14 +99,14 @@ export const loadRepositoryData = () => {
   }
 }
 
-export const loadMergeData = () => {
+export const loadPullRequestData = () => {
   return (dispatch, getState) => {
     const {username} = getState()
-    dispatch(setMergeDataLoadingStatus(true))
+    dispatch(setPullRequestDataLoadingStatus(true))
     dispatch(fetchJsonResource(`https://api.github.com/search/issues?q=author:${username}+type:pr+is:merged&sort=updated`, {
-      dataProcessor: storeMergeData,
-      loadingStatusController: setMergeDataLoadingStatus,
-      errorStatusController: setMergeDataLoadingErrorStatus
+      dataProcessor: storePullRequestData,
+      loadingStatusController: setPullRequestDataLoadingStatus,
+      errorStatusController: setPullRequestDataLoadingErrorStatus
     }))
   }
 }

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 
-import mergeDataReducer from './mergeDataReducer'
-import mergeDataLoadingStatusReducer from './mergeDataLoadingStatusReducer'
-import mergeDataLoadingErrorStatusReducer from './mergeDataLoadingErrorStatusReducer'
+import pullRequestDataReducer from './pullRequestDataReducer'
+import pullRequestDataLoadingStatusReducer from './pullRequestDataLoadingStatusReducer'
+import pullRequestDataLoadingErrorStatusReducer from './pullRequestDataLoadingErrorStatusReducer'
 
 import profileDataReducer from './profileDataReducer'
 import profileDataLoadingStatusReducer from './profileDataLoadingStatusReducer'
@@ -15,9 +15,9 @@ import repositoryDataLoadingErrorStatusReducer from './repositoryDataLoadingErro
 import usernameReducer from './usernameReducer'
 
 export default combineReducers({
-  mergeData: mergeDataReducer,
-  mergeDataLoadingStatus: mergeDataLoadingStatusReducer,
-  mergeDataLoadingErrorStatus: mergeDataLoadingErrorStatusReducer,
+  pullRequestData: pullRequestDataReducer,
+  pullRequestDataLoadingStatus: pullRequestDataLoadingStatusReducer,
+  pullRequestDataLoadingErrorStatus: pullRequestDataLoadingErrorStatusReducer,
 
   profileData: profileDataReducer,
   profileDataLoadingStatus: profileDataLoadingStatusReducer,

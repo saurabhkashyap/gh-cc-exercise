@@ -19,7 +19,7 @@ export const makeLowercaseWithUppercaseFirstChar = (str) => {
  * @param pullReqHtmlUrlString
  * @return {{repoHomepage, repoOwner, repoName}}
  */
-export const parsePullReqHtmlUrl = (pullReqHtmlUrlString) => {
+export const parsePullRequestHtmlUrl = (pullReqHtmlUrlString) => {
   const matches = pullReqHtmlUrlString.match(/(https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+))\//i)
   const repoHomepage = matches[1]
   const repoOwner = matches[2]
@@ -50,7 +50,7 @@ export const dateTimeFormatStr = 'MMMM D, YYYY [at] h:mm A'
  * @param dataSetLabel
  * @constructor
  */
-export const PullReqCounter = function (dataSetLabel) {
+export const PullRequestCounter = function (dataSetLabel) {
   this.labels = []
   this.datasets = [{
     backgroundColor: [],
@@ -67,7 +67,7 @@ export const PullReqCounter = function (dataSetLabel) {
  *
  * @param repoName
  */
-PullReqCounter.prototype.countOccurrence = function (repoName) {
+PullRequestCounter.prototype.countOccurrence = function (repoName) {
   let indexOfLabel = this.labels.indexOf(repoName)
 
   // If no labels for this repository name exists, create one and created an associated counter and background color.

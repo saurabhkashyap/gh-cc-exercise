@@ -3,32 +3,32 @@ import PropTypes from 'prop-types'
 import {Dimmer, Grid, Header, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
 import {HorizontalBar as Bar} from 'react-chartjs-2'
 import moment from 'moment'
-import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullReqHtmlUrl, PullReqCounter} from './helpers'
+import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullRequestHtmlUrl, PullRequestCounter} from './helpers'
 
-import './mergeList.scss'
+import './pullRequestList.scss'
 
-class MergeList extends Component {
+class PullRequestList extends Component {
   render () {
     const {
-      maxMerges,
-      mergeData,
-      mergeDataLoadingStatus,
-      mergeDataLoadingErrorStatus
+      maxPullRequests,
+      pullRequestData,
+      pullRequestDataLoadingStatus,
+      pullRequestDataLoadingErrorStatus
     } = this.props
 
     // Instantiate a pull request counter, which will accumulate data for the chart.
-    const pullReqCounter = new PullReqCounter('Pull Requests')
+    const pullRequestCounter = new PullRequestCounter('Pull Requests')
 
-    const listItems = mergeData.hasOwnProperty('items') ? mergeData.items.slice(0, maxMerges).map((pullReq, index) => {
-      const isOwner = (pullReq.author_association === 'OWNER')
-      const authorAssociation = makeLowercaseWithUppercaseFirstChar(pullReq.author_association)
-      const updatedAtMoment = moment(pullReq.updated_at)
-      const {repoHomepage, repoOwner, repoName} = parsePullReqHtmlUrl(pullReq.html_url)
+    const listItems = pullRequestData.hasOwnProperty('items') ? pullRequestData.items.slice(0, maxPullRequests).map((pullRequest, index) => {
+      const isOwner = (pullRequest.author_association === 'OWNER')
+      const authorAssociation = makeLowercaseWithUppercaseFirstChar(pullRequest.author_association)
+      const updatedAtMoment = moment(pullRequest.updated_at)
+      const {repoHomepage, repoOwner, repoName} = parsePullRequestHtmlUrl(pullRequest.html_url)
       const repoFullName = `${repoOwner}/${repoName}`
-      const pullReqFullName = `#${pullReq.number}: ${pullReq.title}`
-      const commentOrComments = (pullReq.comments === 1) ? 'comment' : 'comments'
+      const pullReqFullName = `#${pullRequest.number}: ${pullRequest.title}`
+      const commentOrComments = (pullRequest.comments === 1) ? 'comment' : 'comments'
 
-      pullReqCounter.countOccurrence(repoFullName)
+      pullRequestCounter.countOccurrence(repoFullName)
 
       return (
         <List.Item key={index}>
@@ -37,7 +37,7 @@ class MergeList extends Component {
             title={isOwner ? "User's own repository" : "Someone else's repository"}
           />
           <List.Content>
-            <a href={pullReq.html_url} title={`View ${pullReqFullName} on GitHub`}>
+            <a href={pullRequest.html_url} title={`View ${pullReqFullName} on GitHub`}>
               {pullReqFullName}
             </a>
             {' in '}
@@ -49,9 +49,9 @@ class MergeList extends Component {
             </List.Description>
             <Item.Extra>
               <Label.Group>
-                <Label basic styleName='Label' title={`${pullReq.comments} ${commentOrComments}`}>
+                <Label basic styleName='Label' title={`${pullRequest.comments} ${commentOrComments}`}>
                   <Icon name='discussions' />
-                  {pullReq.comments}
+                  {pullRequest.comments}
                 </Label>
                 <Label basic styleName='Label' title={`Repository ${authorAssociation.toLowerCase()}`}>
                   <Icon name={isOwner ? 'home' : 'globe'} />
@@ -66,29 +66,29 @@ class MergeList extends Component {
 
     return (
       <Dimmer.Dimmable>
-        <Dimmer inverted active={mergeDataLoadingStatus} />
+        <Dimmer inverted active={pullRequestDataLoadingStatus} />
 
-        <Message icon error={mergeDataLoadingErrorStatus} hidden={!mergeDataLoadingErrorStatus}>
+        <Message icon error={pullRequestDataLoadingErrorStatus} hidden={!pullRequestDataLoadingErrorStatus}>
           <Message.Content>
             <Message.Header>
               Error
             </Message.Header>
             <p>
-              We failed to load the merge data from GitHub.
+              We failed to load the pullRequest data from GitHub.
             </p>
           </Message.Content>
         </Message>
 
-        {!mergeDataLoadingErrorStatus &&
+        {!pullRequestDataLoadingErrorStatus &&
           <div>
-            <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
-            {!mergeDataLoadingStatus &&
+            <Loader indeterminate active={pullRequestDataLoadingStatus}>Loading</Loader>
+            {!pullRequestDataLoadingStatus &&
               <Grid>
                 <Grid.Column mobile={16} tablet={16} computer={10} widescreen={6}>
                   <Segment>
                     <Header as='h5' styleName='chartHeader'>Pull Requests per Repository</Header>
                     <Bar
-                      data={pullReqCounter}
+                      data={pullRequestCounter}
                       height={200}
                       options={{
                         legend: {
@@ -122,11 +122,11 @@ class MergeList extends Component {
   }
 }
 
-MergeList.propTypes = {
-  maxMerges: PropTypes.number.isRequired,
-  mergeData: PropTypes.object.isRequired,
-  mergeDataLoadingStatus: PropTypes.bool.isRequired,
-  mergeDataLoadingErrorStatus: PropTypes.bool.isRequired
+PullRequestList.propTypes = {
+  maxPullRequests: PropTypes.number.isRequired,
+  pullRequestData: PropTypes.object.isRequired,
+  pullRequestDataLoadingStatus: PropTypes.bool.isRequired,
+  pullRequestDataLoadingErrorStatus: PropTypes.bool.isRequired
 }
 
-export default MergeList
+export default PullRequestList

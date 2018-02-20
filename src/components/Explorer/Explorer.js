@@ -1,6 +1,6 @@
 import React from 'react'
 import {Header, Menu, Tab} from 'semantic-ui-react'
-import {MergeListContainer} from 'components/MergeList'
+import {PullRequestListContainer} from 'components/PullRequestList'
 import {RepositoryListContainer} from 'components/RepositoryList'
 
 import './explorer.scss'
@@ -40,8 +40,8 @@ const panes = [
             Recently-updated Pull Requests authored by this user, <em>merged</em> into public Repositories
           </Header.Subheader>
         </Header>
-        <MergeListContainer
-          maxMerges={13}
+        <PullRequestListContainer
+          maxPullRequests={13}
         />
       </Tab.Pane>
     )
