@@ -17,7 +17,7 @@ const panes = [
         <Header>
           Repositories
           <Header.Subheader>
-            Recently-updated, public Repositories owned by this user
+            Recently-updated public Repositories owned by this user
           </Header.Subheader>
         </Header>
         <RepositoryListContainer
