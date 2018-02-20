@@ -1,17 +1,23 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Dimmer, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
-import {Bar} from 'react-chartjs-2'
+import {Dimmer, Header, Icon, Item, Label, List, Loader, Message} from 'semantic-ui-react'
+import {HorizontalBar as Bar} from 'react-chartjs-2'
 import moment from 'moment'
-import {makeLowercaseWithUppercaseFirstChar, parsePullReqHtmlUrl} from './helpers'
+import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullReqHtmlUrl, PullReqCounter} from './helpers'
 
 import './mergeList.scss'
 
 class MergeList extends Component {
   render () {
-    const {maxMerges, mergeData, mergeDataLoadingStatus, mergeDataLoadingErrorStatus} = this.props
+    const {
+      maxMerges,
+      mergeData,
+      mergeDataLoadingStatus,
+      mergeDataLoadingErrorStatus
+    } = this.props
 
-    console.log('mergeData', mergeData)
+    // Instantiate a pull request counter, which will accumulate data for the chart.
+    const pullReqCounter = new PullReqCounter('Pull Requests')
 
     const listItems = mergeData.hasOwnProperty('items') ? mergeData.items.slice(0, maxMerges).map((pullReq, index) => {
       const isOwner = (pullReq.author_association === 'OWNER')
@@ -21,6 +27,8 @@ class MergeList extends Component {
       const repoFullName = `${repoOwner}/${repoName}`
       const pullReqFullName = `#${pullReq.number}: ${pullReq.title}`
       const commentOrComments = (pullReq.comments === 1) ? 'comment' : 'comments'
+
+      pullReqCounter.countOccurrence(repoFullName)
 
       return (
         <List.Item key={index}>
@@ -36,7 +44,7 @@ class MergeList extends Component {
             <a href={repoHomepage} title={`Visit ${repoFullName} on GitHub`}>
               {repoFullName}
             </a>
-            <List.Description title={'Updated ' + updatedAtMoment.format('MMMM D, YYYY [at] h:mm A')}>
+            <List.Description title={'Updated ' + updatedAtMoment.format(dateTimeFormatStr)}>
               Updated {updatedAtMoment.fromNow()}
             </List.Description>
             <Item.Extra>
@@ -75,14 +83,27 @@ class MergeList extends Component {
           <div>
             <Loader indeterminate active={mergeDataLoadingStatus}>Loading</Loader>
             {!mergeDataLoadingStatus &&
-              <Label basic ribbon>
-                <p>Number of Pull Requests per Repository</p>
+              <Label basic ribbon styleName='chartLabel'>
+                <Header as='h5'>Pull Requests per Repository</Header>
                 <Bar
-                  data={{}}
+                  data={pullReqCounter}
                   height={200}
-                  width={260}
+                  width={450}
                   options={{
-                    responsive: false
+                    legend: {
+                      display: false
+                    },
+                    responsive: false,
+                    scales: {
+                      xAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    },
+                    tooltips: {
+                      enabled: false
+                    }
                   }}
                 />
               </Label>
