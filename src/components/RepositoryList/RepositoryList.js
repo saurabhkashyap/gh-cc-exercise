@@ -79,7 +79,7 @@ class RepositoryList extends Component {
 
         {!repositoryDataLoadingErrorStatus &&
           <div>
-            <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
+            <Loader indeterminate active={repositoryDataLoadingStatus} inline='centered'>Loading</Loader>
             {!repositoryDataLoadingStatus &&
               <Grid>
                 <Grid.Column mobile={16} tablet={16} computer={8} widescreen={10}>

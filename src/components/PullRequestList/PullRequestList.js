@@ -82,7 +82,7 @@ class PullRequestList extends Component {
 
         {!pullRequestDataLoadingErrorStatus &&
           <div>
-            <Loader indeterminate active={pullRequestDataLoadingStatus}>Loading</Loader>
+            <Loader indeterminate active={pullRequestDataLoadingStatus} inline='centered'>Loading</Loader>
             {!pullRequestDataLoadingStatus &&
               <Grid>
                 <Grid.Column mobile={16} tablet={16} computer={14} widescreen={16}>
