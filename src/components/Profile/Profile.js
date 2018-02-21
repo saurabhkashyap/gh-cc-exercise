@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Card, Dimmer, Icon, Image, Loader, Message} from 'semantic-ui-react'
+import {mapUsernameToGitHubUrls} from 'lib/helpers'
 
 import './profile.scss'
 
 class Profile extends Component {
   render () {
     const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
-
-    const gistsUrl = `https://gist.github.com/${profileData.login}`
+    const username = profileData.login
 
     return (
       <Dimmer.Dimmable>
@@ -36,7 +36,7 @@ class Profile extends Component {
               </a>
             </Card.Header>
             <Card.Meta>
-              {profileData.login}
+              {username}
             </Card.Meta>
             <Card.Description>
               {profileData.bio}
@@ -46,15 +46,15 @@ class Profile extends Component {
             <Icon name='marker' />
             {profileData.location}
           </Card.Content>
-          <Card.Content extra as='a' href={profileData.followers_url} title='View followers on GitHub' styleName='extraContentLink'>
+          <Card.Content extra as='a' href={mapUsernameToGitHubUrls(username).followers} title='View followers on GitHub' styleName='extraContentLink'>
             <Icon name='user' />
             {profileData.followers} Followers
           </Card.Content>
-          <Card.Content extra as='a' href={profileData.repos_url} title='View public repositories on GitHub' styleName='extraContentLink'>
+          <Card.Content extra as='a' href={mapUsernameToGitHubUrls(username).repositories} title='View public repositories on GitHub' styleName='extraContentLink'>
             <Icon name='fork' />
             {profileData.public_repos} Public Repositories
           </Card.Content>
-          <Card.Content extra as='a' href={gistsUrl} title='View public Gists on GitHub' styleName='extraContentLink'>
+          <Card.Content extra as='a' href={mapUsernameToGitHubUrls(username).gists} title='View public Gists on GitHub' styleName='extraContentLink'>
             <Icon name='github' />
             {profileData.public_gists} Public Gists
           </Card.Content>
