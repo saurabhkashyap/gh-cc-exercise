@@ -84,7 +84,7 @@ class PullRequestList extends Component {
             <Loader indeterminate active={pullRequestDataLoadingStatus}>Loading</Loader>
             {!pullRequestDataLoadingStatus &&
               <Grid>
-                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
+                <Grid.Column mobile={16} tablet={16} computer={14} widescreen={16}>
                   <Segment>
                     <Header as='h5' styleName='chartHeader'>
                       Pull Requests per Repository

@@ -80,7 +80,7 @@ class RepositoryList extends Component {
             <Loader indeterminate active={repositoryDataLoadingStatus}>Loading</Loader>
             {!repositoryDataLoadingStatus &&
               <Grid>
-                <Grid.Column mobile={16} tablet={16} computer={10} widescreen={8}>
+                <Grid.Column mobile={16} tablet={16} computer={8} widescreen={10}>
                   <Segment>
                     <Header as='h5' styleName='chartHeader'>
                       Repositories per Language
