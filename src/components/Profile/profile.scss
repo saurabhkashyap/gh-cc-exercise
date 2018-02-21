@@ -1,3 +1,9 @@
 .nameLink {
   color: #000;
 }
+
+.extraContentLink {
+  &:hover {
+    color: rgba(0, 0, 0, 0.95) !important;
+  }
+}

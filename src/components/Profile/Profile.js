@@ -8,6 +8,8 @@ class Profile extends Component {
   render () {
     const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
 
+    const gistsUrl = `https://gist.github.com/${profileData.login}`
+
     return (
       <Dimmer.Dimmable>
         <Dimmer inverted active={profileDataLoadingStatus} />
@@ -44,15 +46,15 @@ class Profile extends Component {
             <Icon name='marker' />
             {profileData.location}
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra as='a' href={profileData.followers_url} title='View followers on GitHub' styleName='extraContentLink'>
             <Icon name='user' />
             {profileData.followers} Followers
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra as='a' href={profileData.repos_url} title='View public repositories on GitHub' styleName='extraContentLink'>
             <Icon name='fork' />
-            {profileData.public_repos} Public Repos
+            {profileData.public_repos} Public Repositories
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra as='a' href={gistsUrl} title='View public Gists on GitHub' styleName='extraContentLink'>
             <Icon name='github' />
             {profileData.public_gists} Public Gists
           </Card.Content>
