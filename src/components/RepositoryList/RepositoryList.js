@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Dimmer, Grid, Header, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
 import {Doughnut} from 'react-chartjs-2'
 import {mapLanguageToColor, noOp} from 'lib/helpers'
-import {generateTooltipLabelProcessor, LanguageCounter} from './helpers'
+import {generateTooltipLabelProcessor, LanguageCounter} from './lib/helpers'
 
 import './repositoryList.scss'
 
