@@ -15,11 +15,11 @@ class App extends Component {
       <div className={styles.App}>
         <Header />
         <Grid stackable container className={styles.appGrid}>
-          <Grid.Row>
-            <Grid.Column width={4}>
+          <Grid.Row centered columns={2}>
+            <Grid.Column mobile={16} tablet={6} computer={4} widescreen={4}>
               <ProfileContainer />
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column mobile={16} tablet={10} computer={10} widescreen={8}>
               <ExplorerContainer />
             </Grid.Column>
           </Grid.Row>
