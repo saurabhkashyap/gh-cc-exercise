@@ -19,50 +19,53 @@ const PullRequestList = (props) => {
   // Instantiate a pull request counter, which will accumulate data for the chart.
   const pullRequestCounter = new PullRequestCounter('Pull Requests')
 
-  const listItems = pullRequestData.hasOwnProperty('items') ? pullRequestData.items.slice(0, maxPullRequests).map((pullRequest, index) => {
-    const isOwner = (pullRequest.author_association === 'OWNER')
-    const authorAssociation = makeLowercaseWithUppercaseFirstChar(pullRequest.author_association)
-    const updatedAtMoment = moment(pullRequest.updated_at)
-    const {repoHomepage, repoOwner, repoName} = parsePullRequestHtmlUrl(pullRequest.html_url)
-    const repoFullName = `${repoOwner}/${repoName}`
-    const pullReqFullName = `#${pullRequest.number}: ${pullRequest.title}`
-    const commentOrComments = (pullRequest.comments === 1) ? 'comment' : 'comments'
+  let listItems = []
+  if (pullRequestData.hasOwnProperty('items')) {
+    listItems = pullRequestData.items.slice(0, maxPullRequests).map((pullRequest, index) => {
+      const isOwner = (pullRequest.author_association === 'OWNER')
+      const authorAssociation = makeLowercaseWithUppercaseFirstChar(pullRequest.author_association)
+      const updatedAtMoment = moment(pullRequest.updated_at)
+      const {repoHomepage, repoOwner, repoName} = parsePullRequestHtmlUrl(pullRequest.html_url)
+      const repoFullName = `${repoOwner}/${repoName}`
+      const pullReqFullName = `#${pullRequest.number}: ${pullRequest.title}`
+      const commentOrComments = (pullRequest.comments === 1) ? 'comment' : 'comments'
 
-    pullRequestCounter.countOccurrence(repoFullName)
+      pullRequestCounter.countOccurrence(repoFullName)
 
-    return (
-      <List.Item key={index}>
-        <Icon
-          name={isOwner ? 'book' : 'fork'}
-          title={isOwner ? "User's own repository" : "Someone else's repository"}
-        />
-        <List.Content>
-          <a href={pullRequest.html_url} title={`View ${pullReqFullName} on GitHub`}>
-            {pullReqFullName}
-          </a>
-          {' in '}
-          <a href={repoHomepage} title={`Visit ${repoFullName} on GitHub`}>
-            {repoFullName}
-          </a>
-          <List.Description title={'Updated ' + updatedAtMoment.format(dateTimeFormatStr)}>
-            Updated {updatedAtMoment.fromNow()}
-          </List.Description>
-          <Item.Extra>
-            <Label.Group>
-              <Label basic styleName='itemLabel' title={`${pullRequest.comments} ${commentOrComments}`}>
-                <Icon name='discussions' />
-                {pullRequest.comments}
-              </Label>
-              <Label basic styleName='itemLabel' title={`Repository ${authorAssociation.toLowerCase()}`}>
-                <Icon name={isOwner ? 'home' : 'globe'} />
-                {authorAssociation}
-              </Label>
-            </Label.Group>
-          </Item.Extra>
-        </List.Content>
-      </List.Item>
-    )
-  }) : []
+      return (
+        <List.Item key={index}>
+          <Icon
+            name={isOwner ? 'book' : 'fork'}
+            title={isOwner ? "User's own repository" : "Someone else's repository"}
+          />
+          <List.Content>
+            <a href={pullRequest.html_url} title={`View ${pullReqFullName} on GitHub`}>
+              {pullReqFullName}
+            </a>
+            {' in '}
+            <a href={repoHomepage} title={`Visit ${repoFullName} on GitHub`}>
+              {repoFullName}
+            </a>
+            <List.Description title={'Updated ' + updatedAtMoment.format(dateTimeFormatStr)}>
+              Updated {updatedAtMoment.fromNow()}
+            </List.Description>
+            <Item.Extra>
+              <Label.Group>
+                <Label basic styleName='itemLabel' title={`${pullRequest.comments} ${commentOrComments}`}>
+                  <Icon name='discussions' />
+                  {pullRequest.comments}
+                </Label>
+                <Label basic styleName='itemLabel' title={`Repository ${authorAssociation.toLowerCase()}`}>
+                  <Icon name={isOwner ? 'home' : 'globe'} />
+                  {authorAssociation}
+                </Label>
+              </Label.Group>
+            </Item.Extra>
+          </List.Content>
+        </List.Item>
+      )
+    })
+  }
 
   return (
     <Dimmer.Dimmable>
