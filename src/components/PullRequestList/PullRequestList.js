@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {Dimmer, Grid, Header, Icon, Item, Label, List, Loader, Message, Segment} from 'semantic-ui-react'
 import {HorizontalBar as Bar} from 'react-chartjs-2'
 import moment from 'moment'
-import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullRequestHtmlUrl, PullRequestCounter} from './lib/helpers'
+import {PullRequestCounter} from './lib/PullRequestCounter'
+import {dateTimeFormatStr, makeLowercaseWithUppercaseFirstChar, parsePullRequestHtmlUrl} from './lib/helpers'
 
 import './pullRequestList.scss'
 
