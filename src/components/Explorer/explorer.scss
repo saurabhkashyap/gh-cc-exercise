@@ -7,3 +7,12 @@
   border-top-left-radius: .28571429rem !important;
   border-top-right-radius: .28571429rem !important;
 }
+
+.profileLink {
+  color: #000;
+  font-weight: bold;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.95)
+  }
+}
