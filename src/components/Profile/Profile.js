@@ -6,7 +6,12 @@ import {mapUsernameToGitHubUrls} from 'lib/helpers'
 import './profile.scss'
 
 const Profile = (props) => {
-  const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = props
+  const {
+    profileData,
+    profileDataLoadingStatus,
+    profileDataLoadingErrorStatus
+  } = props
+
   const username = profileData.login
 
   return (
