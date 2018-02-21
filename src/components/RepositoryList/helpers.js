@@ -1,44 +1,4 @@
-/**
- * Returns an object containing an English and Hexadecimal representation of the color associated with the language
- * whose name is passed in. The English representation is, specifically, a valid Semantic UI class name.
- *
- * Note: The mapping from language to color was chosen by doing the following: checking which color the GitHub website
- * seems to map a given language to, then choosing the most similar color in the Semantic UI default theme.
- *
- * Reference: https://semantic-ui.com/usage/theming.html
- *
- * @param languageName
- * @return {*}
- */
-export const mapLanguageToColor = (languageName) => {
-  switch (languageName) {
-    case 'C++':
-      return {
-        name: 'pink',
-        hex: '#FF1493'
-      }
-    case 'HTML':
-      return {
-        name: 'red',
-        hex: '#B03060'
-      }
-    case 'JavaScript':
-      return {
-        name: 'yellow',
-        hex: '#FFD700'
-      }
-    case 'Python':
-      return {
-        name: 'blue',
-        hex: '#0E6EB8'
-      }
-    default:
-      return {
-        name: 'grey',
-        hex: '#A0A0A0'
-      }
-  }
-}
+import {mapLanguageToColor} from 'lib/helpers'
 
 /**
  * Returns a new instance of a language counter, which can be used for
@@ -90,5 +50,3 @@ export const generateTooltipLabelProcessor = (singularNoun, pluralNoun) => (tool
   const languageName = data.labels[tooltipItem.index]
   return `${numRepos} ${languageName} ${noun}`
 }
-
-export const noOp = () => {}
