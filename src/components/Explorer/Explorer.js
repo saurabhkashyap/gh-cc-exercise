@@ -26,9 +26,9 @@ const getPanes = (username) => {
             </Header.Subheader>
           </Header>
           <p>
-            Here's a list of public Repositories
-            {' '}<a href={profileUrl} title={`View profile on GitHub`} styleName='profileLink'>{username}</a>{' '}
-            owns and has updated recently.
+            {"Here's a list of public Repositories "}
+            <a href={profileUrl} title={`View profile on GitHub`} styleName='profileLink'>{username}</a>
+            {' owns and has updated recently.'}
           </p>
           <RepositoryListContainer
             maxRepos={10}
@@ -51,9 +51,9 @@ const getPanes = (username) => {
             </Header.Subheader>
           </Header>
           <p>
-            Here's a list of Pull Requests submitted by
-            {' '}<a href={profileUrl} title={`View profile on GitHub`} styleName='profileLink'>{username}</a>,{' '}
-            that have been merged into public Repositories recently.
+            {"Here's a list of Pull Requests submitted by "}
+            <a href={profileUrl} title={`View profile on GitHub`} styleName='profileLink'>{username}</a>
+            {', that have been merged into public Repositories recently.'}
           </p>
           <PullRequestListContainer
             maxPullRequests={13}
