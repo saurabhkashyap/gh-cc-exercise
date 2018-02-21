@@ -10,7 +10,12 @@ class RepositoryListContainer extends Component {
   }
 
   render () {
-    const {maxRepos, repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus} = this.props
+    const {
+      maxRepos,
+      repositoryData,
+      repositoryDataLoadingStatus,
+      repositoryDataLoadingErrorStatus
+    } = this.props
 
     return (
       <RepositoryList
@@ -23,7 +28,13 @@ class RepositoryListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({repositoryData, repositoryDataLoadingStatus, repositoryDataLoadingErrorStatus}) => {
+const mapStateToProps = (state) => {
+  const {
+    repositoryData,
+    repositoryDataLoadingStatus,
+    repositoryDataLoadingErrorStatus
+  } = state
+
   return {
     repositoryData,
     repositoryDataLoadingStatus,

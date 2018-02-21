@@ -4,7 +4,7 @@ import './footer.scss'
 
 const repoUrl = 'https://github.com/gitname/gh-cc-exercise'
 
-const Footer = props => (
+const Footer = (props) => (
   <footer styleName='footer'>
     <p>
       <a href={repoUrl} title='Fork this project on GitHub'>Fork this project on GitHub. <Icon name='github' /></a>

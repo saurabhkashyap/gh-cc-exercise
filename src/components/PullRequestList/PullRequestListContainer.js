@@ -10,7 +10,12 @@ class PullRequestListContainer extends Component {
   }
 
   render () {
-    const {maxPullRequests, pullRequestData, pullRequestDataLoadingStatus, pullRequestDataLoadingErrorStatus} = this.props
+    const {
+      maxPullRequests,
+      pullRequestData,
+      pullRequestDataLoadingStatus,
+      pullRequestDataLoadingErrorStatus
+    } = this.props
 
     return (
       <PullRequestList
@@ -23,7 +28,13 @@ class PullRequestListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({pullRequestData, pullRequestDataLoadingStatus, pullRequestDataLoadingErrorStatus}) => {
+const mapStateToProps = (state) => {
+  const {
+    pullRequestData,
+    pullRequestDataLoadingStatus,
+    pullRequestDataLoadingErrorStatus
+  } = state
+
   return {
     pullRequestData,
     pullRequestDataLoadingStatus,

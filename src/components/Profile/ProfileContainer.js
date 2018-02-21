@@ -10,7 +10,11 @@ class ProfileContainer extends Component {
   }
 
   render () {
-    const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
+    const {
+      profileData,
+      profileDataLoadingStatus,
+      profileDataLoadingErrorStatus
+    } = this.props
 
     return (
       <Profile
@@ -22,7 +26,13 @@ class ProfileContainer extends Component {
   }
 }
 
-const mapStateToProps = ({profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus}) => {
+const mapStateToProps = (state) => {
+  const {
+    profileData,
+    profileDataLoadingStatus,
+    profileDataLoadingErrorStatus
+  } = state
+
   return {
     profileData,
     profileDataLoadingStatus,

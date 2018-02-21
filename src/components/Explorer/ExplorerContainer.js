@@ -15,7 +15,9 @@ class ExplorerContainer extends Component {
   }
 }
 
-const mapStateToProps = ({username}) => {
+const mapStateToProps = (state) => {
+  const {username} = state
+
   return {
     username
   }
