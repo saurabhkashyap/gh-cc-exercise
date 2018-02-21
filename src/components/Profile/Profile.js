@@ -1,31 +1,30 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Card, Dimmer, Icon, Image, Loader, Message} from 'semantic-ui-react'
 import {mapUsernameToGitHubUrls} from 'lib/helpers'
 
 import './profile.scss'
 
-class Profile extends Component {
-  render () {
-    const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = this.props
-    const username = profileData.login
+const Profile = (props) => {
+  const {profileData, profileDataLoadingStatus, profileDataLoadingErrorStatus} = props
+  const username = profileData.login
 
-    return (
-      <Dimmer.Dimmable>
-        <Dimmer inverted active={profileDataLoadingStatus} />
+  return (
+    <Dimmer.Dimmable>
+      <Dimmer inverted active={profileDataLoadingStatus} />
 
-        <Message icon error={profileDataLoadingErrorStatus} hidden={!profileDataLoadingErrorStatus}>
-          <Message.Content>
-            <Message.Header>
-              Error
-            </Message.Header>
-            <p>
-              We failed to load the Profile data.
-            </p>
-          </Message.Content>
-        </Message>
+      <Message icon error={profileDataLoadingErrorStatus} hidden={!profileDataLoadingErrorStatus}>
+        <Message.Content>
+          <Message.Header>
+            Error
+          </Message.Header>
+          <p>
+            We failed to load the Profile data.
+          </p>
+        </Message.Content>
+      </Message>
 
-        {!profileDataLoadingErrorStatus &&
+      {!profileDataLoadingErrorStatus &&
         <Card>
           <Loader indeterminate active={profileDataLoadingStatus}>Loading</Loader>
           <Image src={profileData.avatar_url} />
@@ -59,11 +58,10 @@ class Profile extends Component {
             {profileData.public_gists} Public Gists
           </Card.Content>
         </Card>
-        }
+      }
 
-      </Dimmer.Dimmable>
-    )
-  }
+    </Dimmer.Dimmable>
+  )
 }
 
 Profile.propTypes = {
