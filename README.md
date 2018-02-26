@@ -33,7 +33,7 @@ GH CC Exercise has the following features:
 
 ## Limitations
 
-GH CC Exercise has the following limitation:
+GH CC Exercise has the following limitations:
 
 * **Limited Data Retrieval**: When the web application fetches data from GitHub, it only fetches the first page of results. Generally, that means only _the most recent_ repositories, pull requests, etc. are reflected in the web application's user interface. This limitation is accounted for in the text on the user interface, in its regular employment of the word, "recent."
 * **Hits GitHub's REST API Rate Limit**: GitHub limits the number of times a computer can access its REST API during a given time period. It is possible—by reloading the page multiple times in rapid succession, for example—to cause this web application to hit that limit on behalf of a visitor's computer. When that happens, the web application will display generic error information on the page. Visitors can recover from that error by refraining from using the web application—and from otherwise accessing the GitHub REST API—for several minutes (e.g. 20 minutes).
