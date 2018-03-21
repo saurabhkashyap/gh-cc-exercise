@@ -52,6 +52,11 @@ export const mapLanguageToColor = (languageName) => {
         name: 'blue',
         hex: '#0E6EB8'
       }
+    case 'Shell':
+      return {
+        name: 'green',
+        hex: '#21BA45'
+      }
     default:
       return {
         name: 'grey',
