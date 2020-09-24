@@ -9,9 +9,9 @@
     "classnames": "2.2.5",
     "lodash": "4.17.4",
     "moment": "2.19.3",
-    "react": "^16.2.0",
+    "react": "^16.5.0",
     "react-chartjs-2": "2.7.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.5.0",
     "react-jss": "6.1.1",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
@@ -20,7 +20,7 @@
     "redux-promise": "0.5.3",
     "redux-thunk": "2.2.0",
     "semantic-ui-css": "2.2.14",
-    "semantic-ui-react": "0.78.2"
+    "semantic-ui-react": "0.81.2"
   },
   "scripts": {
     "start": "webpack-dashboard -c cyan -- react-scripts start",
