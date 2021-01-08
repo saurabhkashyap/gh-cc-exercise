@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://gitname.github.io/gh-cc-exercise",
   "dependencies": {
-    "cc-react-scripts": "1.5.1",
+    "cc-react-scripts": "1.5.2",
     "chart.js": "2.7.1",
     "classnames": "2.2.5",
     "lodash": "4.17.4",
