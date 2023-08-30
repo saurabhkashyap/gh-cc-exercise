@@ -1,0 +1,28 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - cc-react-scripts > less > request > extend:
+        patched: '2023-08-30T17:16:33.928Z'
+        id: 'npm:extend:20180424'
+        path: cc-react-scripts > less > request > extend
+  'npm:hoek:20180212':
+    - cc-react-scripts > less > request > hawk > hoek:
+        patched: '2023-08-30T17:16:33.928Z'
+        id: 'npm:hoek:20180212'
+        path: cc-react-scripts > less > request > hawk > hoek
+    - cc-react-scripts > less > request > hawk > boom > hoek:
+        patched: '2023-08-30T17:16:33.928Z'
+        id: 'npm:hoek:20180212'
+        path: cc-react-scripts > less > request > hawk > boom > hoek
+    - cc-react-scripts > less > request > hawk > sntp > hoek:
+        patched: '2023-08-30T17:16:33.928Z'
+        id: 'npm:hoek:20180212'
+        path: cc-react-scripts > less > request > hawk > sntp > hoek
+  'npm:stringstream:20180511':
+    - cc-react-scripts > less > request > stringstream:
+        patched: '2023-08-30T17:16:33.928Z'
+        id: 'npm:stringstream:20180511'
+        path: cc-react-scripts > less > request > stringstream
